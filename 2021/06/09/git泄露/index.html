@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -26,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>hacker-newbie blog</title>
+  <title>git泄漏 - hacker-newbie blog</title>
   
 
   
@@ -359,7 +355,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: ;">
+        <div id="half" class='cover-wrapper post dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
           
@@ -426,7 +422,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 </div>
 
-          <div id="scroll-down" style="display: ;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
         </div>
     
   
@@ -437,373 +433,256 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
-    
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/2021/06/09/git%E6%B3%84%E9%9C%B2/">
+      <h1 class="title">
         git泄漏
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        .git泄露
-
-ctfhub web-信息泄露-git泄露-Log
-
-解题环境：kali Linux
-所需python模块：dirsearch.py &amp; GitHack.py
-上图(题)：
-
-dirsearch.py模块下载
-1git clone https://github.com/maurosoria/dirsearch.git
-
-GitHack.py模块下载
-1git clon...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      </h1>
+      <div class='new-meta-box'>
         
-        <time>2021-06-09</time>
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/images/hacker.jpg">
+    <p>hacker-newbie</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年6月9日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="git泄漏" data-path="/2021/06/09/git%E6%B3%84%E9%9C%B2/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h1 id="git泄露"><a href="#git泄露" class="headerlink" title=".git泄露"></a>.git泄露</h1><hr>
+<blockquote>
+<p>ctfhub web-信息泄露-git泄露-Log</p>
+</blockquote>
+<p><u><em><strong>解题环境：kali Linux</strong></em></u></p>
+<p><em><strong>所需python模块：dirsearch.py &amp; GitHack.py</strong></em></p>
+<p>上图(题)：</p>
+<p><img src="%5Cctf%5Cgitxielou1.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="题目"></p>
+<p><em>dirsearch.py模块下载</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maurosoria/dirsearch.git</span><br></pre></td></tr></table></figure>
+
+<p><em>GitHack.py模块下载</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/BugScanTeam/GitHack</span><br></pre></td></tr></table></figure>
+
+<h3 id="扫描网页"><a href="#扫描网页" class="headerlink" title="扫描网页"></a>扫描网页</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 dirsearch.py -u &lt;url&gt; -e *</span><br></pre></td></tr></table></figure>
+
+<p><img src="%5Cctf%5Cgitxielou2.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="dirsearch扫描"></p>
+<p>扫描参数为 [time] [status] [size] [way]</p>
+<h3 id="git获取"><a href="#git获取" class="headerlink" title=".git获取"></a>.git获取</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 GitHack.py &lt;http(s)://url/.git/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="%5Cctf%5Cgitxielou3.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="GitHack使用"></p>
+<p><u><strong>注意：在使用过程中可能会出现几行<font color="red">红色</font>的提示字样导致失败</strong></u></p>
+<p><strong>解决方法：创建GitHack-master文件夹 &amp; 在此文件夹下使用GitHack.py</strong></p>
+<h3 id="寻找Flag"><a href="#寻找Flag" class="headerlink" title="寻找Flag"></a>寻找<font  color="red">Flag</font></h3><p>找到以环境url为名的文件夹并打开</p>
+<p><strong>这里要用到git命令</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 | git <span class="built_in">log</span>  查看历史版本</span><br><span class="line">2 | git reset 切换版本</span><br><span class="line">3 | git dirr 对比两次提交</span><br></pre></td></tr></table></figure>
+
+<p>在查看历史记录会发现当前为 <strong>remove flag</strong>,但<strong>flag</strong>在<strong>add flag</strong>中，这里需要切换版本。</p>
+<p><img src="%5Cctf%5Cgitxielou4.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="logs"></p>
+<p>因为我已经解过了，这里没有<strong>remove flag</strong></p>
+<p>切换命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;commit值&gt;    取值可以用TAB键选中“add flag”即可</span><br></pre></td></tr></table></figure>
+
+<p>最后会发现文件夹下多了一个<strong>txt</strong>文件。</p>
+<p><img src="%5Cctf%5Cgitxielou5.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="txt"></p>
+<p>打开即可得到<strong>flag</strong></p>
+<p><img src="%5Cctf%5Cgitxielou6.PNG" class="lazyload" data-srcset="%5Cctf%5Cgitxielou6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="flag"></p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/06/09/git%E6%B3%84%E9%9C%B2/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/06/09/git%E6%B3%84%E9%9C%B2/>https://hacker-hkl.github.io/2021/06/09/git%E6%B3%84%E9%9C%B2/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='/images/zhifubao.png'>
+            
+              <img src='/images/wechat.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-09T01:04:00+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月9日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">
-        计算机网络原理(持续更新)
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-                                                         计算机网络原理
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/06/09/git%E6%B3%84%E9%9C%B2/&title=git泄漏 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/06/09/git%E6%B3%84%E9%9C%B2/&title=git泄漏 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/06/09/git%E6%B3%84%E9%9C%B2/&title=git泄漏 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/'>
+          <p class='title'>计算机网络原理(持续更新)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>                                                 计算机网络原理
 
 
 一、计算机网络原理
 1.计算机网络原理简介
-计算机网络 = 通信技术 + 计算机技术 ， 二者的紧密结合
-通信系统模型：123graph LR	A[信源] --&gt; B[发送设备] --&gt;C[信道] --&gt;D[接收设备] --&gt;E[新宿] 	F[噪声源]...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-01</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/'>
-            阅读全文
-          </a>
-        </div>
+计算机网络 = 通信技术 + 计...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/25/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/">
-        ip地址详解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        ip地址详解
+  </article>
 
 
-简单局域网的构成
-
-1.局域网：一般称为内网2.简单局域网的构成：交换机、网线、pc(其他IT终端)3.交换机：用来组建内网的局域设备IP地址1.IP地址就是一个唯一的标识，是一段网络编码(二进制)，由32位组成2.IP地址的形式：x.x.x.x  x的范围是0～255子网掩码1.局域网通信规则：在同一个局域网中，所有的IP必须在同一网段中才可以互相通信2.IP地址构成：网...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-25</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/25/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        爬虫BeautifulSoup模块的使用
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。刚才说是通过解析文档，首先要保存文档，接上期获取网页后
-12345html = response.read()html_str = html.decode(&#x27;utf-8&#...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
-        爬虫urllib的使用与补充
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
-类的使用123import urllib.requesturllib.request.urlopen(文本网址,*data,*timeout) #data为传参的文本，timeout为访问一次的时间节点print(response.stat...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-06</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
-        shadowsocks搭建自己的vpn
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        在开始下面的步骤前，你首先需要拥有一台海外服务器。下面是在Debian下进行
-进入服务器操作端
-下载shadowsocks1$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-        用hexo+github搭建个人博客
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        环境：linux kali下
-步骤
-
-安装Node的LTS版本
-安装包要放在opt目录
-解压方法：1$ tar -xvf 文件名
-解压后的文件放在opt目录下
 
 
-查看node、cpm、、cnpm、hexo版本1234$ node -v$ npm -v$ cnpm -v$ hexo -v
-安装淘宝的cnpm管理器1$ npm install -g --registry=http://regi...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-12-06</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
 </div>
@@ -813,82 +692,22 @@ GitHack.py模块下载
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='/images/hacker.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:hackerdaren@outlook.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%BD%91%E9%A1%B5"><span class="toc-text">扫描网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E8%8E%B7%E5%8F%96"><span class="toc-text">.git获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E6%89%BEFlag"><span class="toc-text">寻找Flag</span></a></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
@@ -903,8 +722,8 @@ GitHack.py模块下载
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="git泄漏";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
@@ -916,7 +735,7 @@ GitHack.py模块下载
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="full";
+    cover_wrapper.id="half";
     cover_wrapper.style.display="";
     
   
