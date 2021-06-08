@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>shadowsocks搭建自己的vpn - hacker-newbie blog</title>
+  <title>归档：2020/12 - hacker-newbie blog</title>
   
 
   
@@ -355,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper post dock' style="display: ;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
           
@@ -433,241 +435,126 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+	
+		
+  <section class="post-list">
+    
+      
+        
+          
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
   
-
-
   
-  <div class="article-meta" id="top">
+  
+  
     
-    
-    
-      <h1 class="title">
+    <h2 class="article-title" >
+      <a href="/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
         shadowsocks搭建自己的vpn
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/images/hacker.jpg">
-    <p>hacker-newbie</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年5月1日</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
       
-      <div id="lc-pv" data-title="shadowsocks搭建自己的vpn" data-path="/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
-          
-        
-      </div>
+        在开始下面的步骤前，你首先需要拥有一台海外服务器。下面是在Debian下进行
+进入服务器操作端
+下载shadowsocks1$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh...
+      
     
   </div>
-
-
   
-  
-  <p><strong>在开始下面的步骤前，你首先需要拥有一台海外服务器。</strong><br><strong>下面是在Debian下进行</strong></p>
-<h4 id="进入服务器操作端"><a href="#进入服务器操作端" class="headerlink" title="进入服务器操作端"></a>进入服务器操作端</h4><ol>
-<li>下载shadowsocks<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br></pre></td></tr></table></figure></li>
-<li>上面语句执行成功后执行下面命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x shadowsocks-all.sh</span><br></pre></td></tr></table></figure></li>
-<li>上面语句执行成功后执行下面命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./shadowsocks-all.sh 2&gt;&amp;1| tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>
-<h4 id="操作页面-根据需要进行选择"><a href="#操作页面-根据需要进行选择" class="headerlink" title="操作页面(根据需要进行选择)"></a>操作页面(根据需要进行选择)</h4></li>
-<li>首先选择服务类型(不明白就直接按回车或者选1)</li>
-<li>配置密码</li>
-<li>配置端口</li>
-<li>配置加密方式(不明白就直接按回车或者选1) <strong>注意：iphone端的wingy目前只支持到cfb，加密方式要选择aes-256-cfb</strong><h4 id="shadowsocks终端体验"><a href="#shadowsocks终端体验" class="headerlink" title="shadowsocks终端体验"></a>shadowsocks终端体验</h4></li>
-<li>下载对应客户端<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-windows/releases">windows</a><br><a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-android/releases">android</a><br>iphone: App Store上下载shadowLink，但是这个要用国外appid才可以下载，国内搜索不到哦，因为shadowrocket收费的。</p>
-</blockquote>
-</li>
-<li>配置shadowsocks</li>
-</ol>
-<ul>
-<li>windows<br> 下载安装后打开飞机形图标的软件，如图:<br> <img src="/images/Windows.png" class="lazyload" data-srcset="/images/Windows.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="windows"><br>注意:<strong>右击任务栏的飞机图标，选择系统代理，禁止是不能访问海外网页的，具体选择不做介绍，如果只是日常用的话选PAC就够了</strong></li>
-<li>Android<br>下载安装好后打开按下图：<br><img src="/images/Android.jpg" class="lazyload" data-srcset="/images/Android.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="Android"><br>注意<strong>配置过程中有一个路由设置，根据自己需求配置即可</strong></li>
-</ul>
-
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-07</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/>https://hacker-hkl.github.io/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/'>
+            阅读全文
+          </a>
         </div>
       
-      
-        <div class='donate'>
-          <div class='imgs'>
-            
-              <img src='/images/zhifubao.png'>
-            
-              <img src='/images/wechat.png'>
-            
+    </div>
+  
+
+</div>
+
           </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        用hexo+github搭建个人博客
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        环境：linux kali下
+步骤
+
+安装Node的LTS版本
+安装包要放在opt目录
+解压方法：1$ tar -xvf 文件名
+解压后的文件放在opt目录下
+
+
+查看node、cpm、、cnpm、hexo版本1234$ node -v$ npm -v$ cnpm -v$ hexo -v
+安装淘宝的cnpm管理器1$ npm install -g --registry=http://regi...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
+            阅读全文
+          </a>
         </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-01T17:45:57+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年5月1日</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/&title=shadowsocks搭建自己的vpn - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/&title=shadowsocks搭建自己的vpn - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/05/01/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/&title=shadowsocks搭建自己的vpn - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
+  </section>
   
+    
   
 
-  
-    <div class="prev-next">
-      
-      
-        <a class='next' href='/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/'>
-          <p class='title'>计算机网络原理(持续更新)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>                                                 计算机网络原理
 
-
-一、计算机网络原理
-1.计算机网络原理简介
-计算机网络 = 通信技术 + 计...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
-    
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -675,28 +562,87 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-
-
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
     
-  <header>
+      
+        <a class='avatar flat-box circle' href='/about/'>
+          <img no-lazy src='/images/hacker.jpg'/>
+        </a>
+      
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-  </header>
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:hackerdaren@outlook.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E7%AB%AF"><span class="toc-text">进入服务器操作端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%A1%B5%E9%9D%A2-%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E9%80%89%E6%8B%A9"><span class="toc-text">操作页面(根据需要进行选择)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shadowsocks%E7%BB%88%E7%AB%AF%E4%BD%93%E9%AA%8C"><span class="toc-text">shadowsocks终端体验</span></a></li></ol>
-    </div>
-  </section>
+  
+    
+    
 
+  
+
+  
+    
+    
+
+  
 
   
 
 
 </aside>
-
 
 
 		  
@@ -705,8 +651,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="shadowsocks搭建自己的vpn";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要

@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>ip地址详解 - hacker-newbie blog</title>
+  <title>归档：2021/3 - hacker-newbie blog</title>
   
 
   
@@ -355,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper post dock' style="display: ;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
           
@@ -433,288 +435,70 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
     
-    
-    
-      <h1 class="title">
-        ip地址详解
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/images/hacker.jpg">
-    <p>hacker-newbie</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年5月1日</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="ip地址详解" data-path="/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+        
           
         
-      </div>
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
+        爬虫urllib的使用与补充
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
+类的使用123import urllib.requesturllib.request.urlopen(文本网址,*data,*timeout) #data为传参的文本，timeout为访问一次的时间节点print(response.stat...
+      
     
   </div>
-
-
   
-  
-  <pre><code>ip地址详解
-</code></pre>
-<hr>
-<p>简单局域网的构成</p>
-<blockquote>
-<p>1.局域网：一般称为内网<br>2.简单局域网的构成：交换机、网线、pc(其他IT终端)<br>3.交换机：用来组建内网的局域设备<br>IP地址<br>1.IP地址就是一个唯一的标识，是一段网络编码(二进制)，由32位组成<br>2.IP地址的形式：x.x.x.x  x的范围是0～255<br>子网掩码<br>1.局域网通信规则：在同一个局域网中，所有的IP必须在同一网段中才可以互相通信<br>2.IP地址构成：网络位+主机位(网络位相同的IP地址，为同一网段)<br>3.子网掩码：用来确定IP地址的网络位<br>4.子网掩码如何确认网络位：与255对应的数字位为网络位，与0对应的数字为主机位</p>
-</blockquote>
-<ul>
-<li>5.子网掩码不能与IP相同<blockquote>
-<p>255.0.0.0<br>255.255.0.0<br>255.255.255.0<br>ip地址详解</p>
-</blockquote>
-</li>
-<li>1.国际标准组织ISO定义地址分类：五大类(是以IP地址的第一位进行区分的)<blockquote>
-<ul>
-<li>A类：1～126 默认子网掩码：255.0.0.0</li>
-<li>B类：128～191 默认子网掩码：255.255.0.0</li>
-<li>C类：192～223 默认子网掩码：255.255.255.0</li>
-<li>D类：244～239 组播地址(一组人用一个地址)</li>
-<li>E类：240～254 科研使用</li>
-</ul>
-</blockquote>
-</li>
-<li>目前我们用的是ABC三类，子网掩码可以修改</li>
-<li>主机位0和255不能用，255为广播地址</li>
-<li>127.0.0.1 代表自己(测试用)回环地址<br>网关<blockquote>
-<p>1.网关：一个网络的出口，Gateway=GW,一般网关是在路由器上<br>2.路由器：可用链接内外网的设备</p>
-</blockquote>
-</li>
-<li>3.pc向外发包<blockquote>
-<ul>
-<li>首先判断目标IP地址与自己是否在同一网段</li>
-<li>如在同一网段，则直接发出去，而不找网关</li>
-<li>如不在同一网段，则直接发包给网关<br>DNS</li>
-</ul>
-<p>1.DNS:Domain Name Service 域名服务器<br>pc(域名) -&gt; DNS -&gt; pc(ip) -&gt; 服务器<br>网络测试命令</p>
-</blockquote>
-</li>
-<li>1.查看IP地址<blockquote>
-<ul>
-<li>首先：开始 - 运行 - 输入cmd - 进入命令运行窗口  或者win+r打开运行窗口</li>
-<li><code>ipconfig</code> #查看IP地址基本信息</li>
-<li><code>ipconfig /all</code> #查看IP地址详细信息</li>
-</ul>
-</blockquote>
-</li>
-<li>2.测试网络连通性<blockquote>
-<ul>
-<li>ping 目标IP地址 #测试网络连通性，有去有回即为可以成功通信</li>
-<li><code>ping -t 目标ip地址</code>  一直ping</li>
-<li><code>ping -n 数字 目标IP地址</code> 修改ping包的数量</li>
-</ul>
-</blockquote>
-</li>
-<li>如果ping不通，可能对方不在线，或者对方开着防火墙</li>
-<li>3.手工解析域名<blockquote>
-<ul>
-<li><code>nslookup www.jd.com</code> 手工解析域名IP地址</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="如有错误，多多包涵，也请指正！感谢！"><a href="#如有错误，多多包涵，也请指正！感谢！" class="headerlink" title="如有错误，多多包涵，也请指正！感谢！"></a>如有错误，多多包涵，也请指正！感谢！</h2>
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-06</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/>https://hacker-hkl.github.io/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
+            阅读全文
+          </a>
         </div>
       
-      
-        <div class='donate'>
-          <div class='imgs'>
-            
-              <img src='/images/zhifubao.png'>
-            
-              <img src='/images/wechat.png'>
-            
+    </div>
+  
+
+</div>
+
           </div>
-        </div>
-      
-    </div>
-  
-  
-    
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-01T17:39:51+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年5月1日</p>
-  </a>
-</div>
-
         
       
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/&title=ip地址详解 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/&title=ip地址详解 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/05/01/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/&title=ip地址详解 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
+  </section>
   
+    
   
 
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>计算机网络原理(持续更新)</p>
-          <p class='content'>                                                 计算机网络原理
 
-
-一、计算机网络原理
-1.计算机网络原理简介
-计算机网络 = 通信技术 + 计...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/05/01/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/'>
-          <p class='title'>爬虫BeautifulSoup模块的使用<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
-    
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -722,28 +506,87 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-
-
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
     
-  <header>
+      
+        <a class='avatar flat-box circle' href='/about/'>
+          <img no-lazy src='/images/hacker.jpg'/>
+        </a>
+      
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-  </header>
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:hackerdaren@outlook.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9C%89%E9%94%99%E8%AF%AF%EF%BC%8C%E5%A4%9A%E5%A4%9A%E5%8C%85%E6%B6%B5%EF%BC%8C%E4%B9%9F%E8%AF%B7%E6%8C%87%E6%AD%A3%EF%BC%81%E6%84%9F%E8%B0%A2%EF%BC%81"><span class="toc-text">如有错误，多多包涵，也请指正！感谢！</span></a></li></ol>
-    </div>
-  </section>
+  
+    
+    
 
+  
+
+  
+    
+    
+
+  
 
   
 
 
 </aside>
-
 
 
 		  
@@ -752,8 +595,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="ip地址详解";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要

@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2021 - hacker-newbie blog</title>
+  <title>爬虫BeautifulSoup模块的使用 - hacker-newbie blog</title>
   
 
   
@@ -357,7 +355,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="half" class='cover-wrapper post dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
           
@@ -435,217 +433,239 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">
-        计算机网络原理(持续更新)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-                                                         计算机网络原理
 
 
-一、计算机网络原理
-1.计算机网络原理简介
-计算机网络 = 通信技术 + 计算机技术 ， 二者的紧密结合
-通信系统模型：123graph LR	A[信源] --&gt; B[发送设备] --&gt;C[信道] --&gt;D[接收设备] --&gt;E[新宿] 	F[噪声源]...
-      
+  
+  <div class="article-meta" id="top">
     
+    
+    
+      <h1 class="title">
+        爬虫BeautifulSoup模块的使用
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/images/hacker.jpg">
+    <p>hacker-newbie</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年4月5日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="爬虫BeautifulSoup模块的使用" data-path="/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-05-01</time>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。"><a href="#BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。" class="headerlink" title="BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。"></a>BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。</h2><p>刚才说是通过解析文档，首先要保存文档，接上期获取网页后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">html = response.read()</span><br><span class="line">html_str = html.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">r&quot;./douban.html&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">f.write(html_str)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p><strong>获取网页后要先解码，再进行保存。</strong></p>
+<ol>
+<li>BeautifulSoup的安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure>
+这里使用beautifulsoup4</li>
+<li>beautifulsoup解析<br>这里只以html.parser-html文件解析展开，夹杂re正则表达式<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&#x27;douban.html&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">html = file.read()</span><br><span class="line">bs = BeautifulSoup(html,<span class="string">&quot;html.parser&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="当然，这个库的解析并不止这些，小编的“墨水”稍微有点少哈。"><a href="#当然，这个库的解析并不止这些，小编的“墨水”稍微有点少哈。" class="headerlink" title="当然，这个库的解析并不止这些，小编的“墨水”稍微有点少哈。"></a><strong>当然，这个库的解析并不止这些，小编的“墨水”稍微有点少哈。</strong></h2><h2 id="上述调试好之后就可以使用了。"><a href="#上述调试好之后就可以使用了。" class="headerlink" title="上述调试好之后就可以使用了。"></a>上述调试好之后就可以使用了。</h2><ol start="3">
+<li>美汤的使用<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(bs.a) <span class="comment">#查找有a的内容</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(bs.a)) <span class="comment">#查看a的类型</span></span><br><span class="line"><span class="built_in">print</span>(bs.a.attrs) <span class="comment">#可以拿到一个标签里面所有的属性，以字典形式呈现。</span></span><br><span class="line"><span class="comment"># 文档的遍历</span></span><br><span class="line"><span class="built_in">print</span>(bs.head.contents) <span class="comment">#动手实践会有更多惊喜和深入的理解</span></span><br><span class="line"><span class="comment"># 文档的搜索</span></span><br><span class="line"><span class="comment"># 1.find_all()</span></span><br><span class="line">t_list = bs.find_all(<span class="string">&quot;a&quot;</span>) <span class="comment">#查找所有的a，列表形式</span></span><br><span class="line"><span class="comment"># 正则表达式，使用search()方法来匹配内容</span></span><br><span class="line">t_list = bs.find_all(re.<span class="built_in">compile</span>(<span class="string">&quot;a&quot;</span>)) <span class="comment">#这里是只要包含“a”的列表都会呈现出来(简单介绍)</span></span><br><span class="line"><span class="comment"># 方法：传入一个函数(方法)，根据函数的要求来搜索</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_is_exists</span>(<span class="params">tag</span>):</span></span><br><span class="line">	<span class="keyword">return</span> tag.has_attr(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">t_list = bs.find_all(name_is_exists)</span><br><span class="line"><span class="comment"># 2.kwards 参数</span></span><br><span class="line">t_list = bs.find_all(<span class="built_in">id</span>=<span class="string">&quot;head&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> t_list:</span><br><span class="line">	<span class="built_in">print</span>(item) <span class="comment">#罗列</span></span><br><span class="line"><span class="comment"># 3. Text参数</span></span><br><span class="line">t_list = bs.find_all(text=[]) <span class="comment">#可以是列表，可以是单个</span></span><br><span class="line">t_lish = bs.find_all(text=re.comple(<span class="string">&quot;\d&quot;</span>)) <span class="comment">#含有数字的文本</span></span><br><span class="line"><span class="comment"># 4. limit参数</span></span><br><span class="line">t_list = bs.find_all(<span class="string">&quot;a&quot;</span>,limit=整形) <span class="comment">#限制搜索的个数</span></span><br><span class="line"><span class="comment"># css选择器</span></span><br><span class="line">t_list = bs.select(<span class="string">&#x27;title&#x27;</span>) <span class="comment">#通过标签查找</span></span><br><span class="line">t_list = bs.select(<span class="string">&quot;.mnav&quot;</span>) <span class="comment">#通过类名来查找</span></span><br><span class="line">t_list = bs.select(<span class="string">&quot;#u1&quot;</span>) <span class="comment">#通过id来查找</span></span><br><span class="line">t_list = bs.select(<span class="string">&quot;a[class=&#x27;bri&#x27;]&quot;</span>) <span class="comment">#通过属性来查找</span></span><br><span class="line">t_list = bs.select(<span class="string">&quot;head &gt; title&quot;</span>) <span class="comment">#通过子标签来查找</span></span><br><span class="line">t_list = bs.select(<span class="string">&quot;.mnav ~ .bri&quot;</span>) <span class="comment">#通过兄弟标签来查找</span></span><br><span class="line"><span class="built_in">print</span>(t_list[<span class="number">0</span>].get_text()) <span class="comment">#找到某个指定列的文本</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="这些就是关于beautifulsoup的基本使用方法。相对比较简单。当然还有更多可使用的方法，这里不一一罗列。在使用的过程中可以嵌套re正则表达式达到我们的目的。"><a href="#这些就是关于beautifulsoup的基本使用方法。相对比较简单。当然还有更多可使用的方法，这里不一一罗列。在使用的过程中可以嵌套re正则表达式达到我们的目的。" class="headerlink" title="这些就是关于beautifulsoup的基本使用方法。相对比较简单。当然还有更多可使用的方法，这里不一一罗列。在使用的过程中可以嵌套re正则表达式达到我们的目的。"></a>这些就是关于beautifulsoup的基本使用方法。相对比较简单。当然还有更多可使用的方法，这里不一一罗列。在使用的过程中可以嵌套re正则表达式达到我们的目的。</h2><h2 id="文章难免会有些错误，还请指正，感谢！"><a href="#文章难免会有些错误，还请指正，感谢！" class="headerlink" title="文章难免会有些错误，还请指正，感谢！"></a>文章难免会有些错误，还请指正，感谢！</h2>
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/>https://hacker-hkl.github.io/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='/images/zhifubao.png'>
+            
+              <img src='/images/wechat.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-08T22:08:28+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月8日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/25/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/">
-        ip地址详解
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        ip地址详解
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/&title=爬虫BeautifulSoup模块的使用 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/&title=爬虫BeautifulSoup模块的使用 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/&title=爬虫BeautifulSoup模块的使用 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/04/25/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ip地址详解</p>
+          <p class='content'>ip地址详解
 
 
 简单局域网的构成
 
-1.局域网：一般称为内网2.简单局域网的构成：交换机、网线、pc(其他IT终端)3.交换机：用来组建内网的局域设备IP地址1.IP地址就是一个唯一的标识，是一段网络编码(二进制)，由32位组成2.IP地址的形式：x.x.x.x  x的范围是0～255子网掩码1.局域网通信规则：在同一个局域网中，所有的IP必须在同一网段中才可以互相通信2.IP地址构成：网...
+1.局域网：一般称为内网2.简单局域网的构成：交换机、网线、pc(其他IT终端)3.交换机：用来组建内网的局域设备IP地址1.IP地址就是一个唯一的标识，是...</p>
+        </a>
       
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-25</time>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2021/04/25/ip%E5%9C%B0%E5%9D%80%E8%AF%A6%E8%A7%A3/'>
-            阅读全文
-          </a>
-        </div>
+        <a class='next' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
+          <p class='title'>爬虫urllib的使用与补充<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
+类的使用123import urllib...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        爬虫BeautifulSoup模块的使用
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。刚才说是通过解析文档，首先要保存文档，接上期获取网页后
-12345html = response.read()html_str = html.decode(&#x27;utf-8&#...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
-        爬虫urllib的使用与补充
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
-类的使用123import urllib.requesturllib.request.urlopen(文本网址,*data,*timeout) #data为传参的文本，timeout为访问一次的时间节点print(response.stat...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-06</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -653,87 +673,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='/images/hacker.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:hackerdaren@outlook.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
 
-  
 
-  
-    
-    
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeautifulSoup%E6%98%AFpython%E7%9A%84%E4%B8%80%E4%B8%AA%E5%BA%93%EF%BC%8C%E7%B1%BB%E4%BC%BC%E4%BA%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%86%E5%8F%88%E4%B8%8E%E5%85%B6%E4%B8%8D%E5%90%8C%EF%BC%8C%E4%B8%BB%E8%A6%81%E7%94%A8%E6%9D%A5%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%8F%90%E4%BE%9B%E4%B8%80%E4%BA%9B%E7%94%A8%E6%9D%A5%E5%A4%84%E7%90%86%E5%AF%BC%E8%88%AA%E3%80%81%E6%90%9C%E7%B4%A2%E3%80%81%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%86%E6%9E%90%E6%A0%91%E7%AD%89%E5%8A%9F%E8%83%BD%E7%9A%84%E5%87%BD%E6%95%B0%E3%80%82%E9%80%9A%E8%BF%87%E8%A7%A3%E6%9E%90%E6%96%87%E6%A1%A3%E4%B8%BA%E7%94%A8%E6%88%B7%E6%8F%90%E4%BE%9B%E9%9C%80%E8%A6%81%E6%8A%93%E5%8F%96%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E7%94%A8%E8%B5%B7%E6%9D%A5%E4%B9%9F%E6%AF%94%E8%BE%83%E7%AE%80%E5%8D%95%E3%80%82"><span class="toc-text">BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%BA%93%E7%9A%84%E8%A7%A3%E6%9E%90%E5%B9%B6%E4%B8%8D%E6%AD%A2%E8%BF%99%E4%BA%9B%EF%BC%8C%E5%B0%8F%E7%BC%96%E7%9A%84%E2%80%9C%E5%A2%A8%E6%B0%B4%E2%80%9D%E7%A8%8D%E5%BE%AE%E6%9C%89%E7%82%B9%E5%B0%91%E5%93%88%E3%80%82"><span class="toc-text">当然，这个库的解析并不止这些，小编的“墨水”稍微有点少哈。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E8%BF%B0%E8%B0%83%E8%AF%95%E5%A5%BD%E4%B9%8B%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BA%86%E3%80%82"><span class="toc-text">上述调试好之后就可以使用了。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%BA%9B%E5%B0%B1%E6%98%AF%E5%85%B3%E4%BA%8Ebeautifulsoup%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E3%80%82%E7%9B%B8%E5%AF%B9%E6%AF%94%E8%BE%83%E7%AE%80%E5%8D%95%E3%80%82%E5%BD%93%E7%84%B6%E8%BF%98%E6%9C%89%E6%9B%B4%E5%A4%9A%E5%8F%AF%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E8%BF%99%E9%87%8C%E4%B8%8D%E4%B8%80%E4%B8%80%E7%BD%97%E5%88%97%E3%80%82%E5%9C%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%B5%8C%E5%A5%97re%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BE%BE%E5%88%B0%E6%88%91%E4%BB%AC%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%82"><span class="toc-text">这些就是关于beautifulsoup的基本使用方法。相对比较简单。当然还有更多可使用的方法，这里不一一罗列。在使用的过程中可以嵌套re正则表达式达到我们的目的。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E9%9A%BE%E5%85%8D%E4%BC%9A%E6%9C%89%E4%BA%9B%E9%94%99%E8%AF%AF%EF%BC%8C%E8%BF%98%E8%AF%B7%E6%8C%87%E6%AD%A3%EF%BC%8C%E6%84%9F%E8%B0%A2%EF%BC%81"><span class="toc-text">文章难免会有些错误，还请指正，感谢！</span></a></li></ol>
+    </div>
+  </section>
 
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -742,8 +703,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="爬虫BeautifulSoup模块的使用";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要

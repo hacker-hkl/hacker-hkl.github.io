@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>爬虫urllib的使用与补充 - hacker-newbie blog</title>
+  <title>归档：2020 - hacker-newbie blog</title>
   
 
   
@@ -355,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper post dock' style="display: ;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
           
@@ -433,204 +435,83 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
     
-    
-    
-      <h1 class="title">
-        爬虫urllib的使用与补充
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/images/hacker.jpg">
-    <p>hacker-newbie</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年5月1日</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="爬虫urllib的使用与补充" data-path="/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+        
           
         
-      </div>
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
+        shadowsocks搭建自己的vpn
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        在开始下面的步骤前，你首先需要拥有一台海外服务器。下面是在Debian下进行
+进入服务器操作端
+下载shadowsocks1$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh...
+      
     
   </div>
-
-
   
-  
-  <p><strong>关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。</strong></p>
-<h4 id="类的使用"><a href="#类的使用" class="headerlink" title="类的使用"></a>类的使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">urllib.request.urlopen(文本网址,*data,*timeout) <span class="comment">#data为传参的文本，timeout为访问一次的时间节点</span></span><br><span class="line"><span class="built_in">print</span>(response.status.getheader(<span class="string">&quot;&quot;</span>))  <span class="comment">#status测试时查看网站状态，如果不进行浏览器仿真处理可能会返回418(对方已识别出你是爬虫)。getheader是查看键所对应的值，例如响应报头就可以用。</span></span><br></pre></td></tr></table></figure>
-<p>获取一个get请求</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response = urllib.request.urlopen(<span class="string">&quot;http://www.baidu.com/get&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)) <span class="comment">#对获取到的网页源码进行utf-8解码</span></span><br></pre></td></tr></table></figure>
-<p>获取一个post请求(同get用)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse <span class="comment">#解析发送的信息</span></span><br><span class="line">data = <span class="built_in">bytes</span>(urllib.parse.urlencode(&#123;<span class="string">&quot;hello&quot;</span>:<span class="string">&quot;world&quot;</span>&#125;),encoding = <span class="string">&quot;utf-8&quot;</span>) <span class="comment">#post请求需要发送参数(data)，encoding解释封装的信息是utf-8的格式</span></span><br><span class="line">response = urllib.request.urlopen(<span class="string">&quot;http://httpbin.org/post&quot;</span>,data = data)  <span class="comment">#后面的data是你封装好要传递的参数。等号前的data是函数本身，后面是你封装好的变量。</span></span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<p>对一个无法打开的网址进行中断(超时处理，0.01s太短，这里只是举例)，可用于多个网页爬取。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	response = urllib.requset.urlopen(<span class="string">&quot;http:/httpbin.org/get&quot;</span>,timeout = <span class="number">0.01</span>)</span><br><span class="line">	<span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="keyword">except</span> urllib.error.URLError <span class="keyword">as</span> e:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;time out!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>模仿浏览器完整操作(豆瓣网为例)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&quot;https://www.douban.com&quot;</span></span><br><span class="line">headers = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57&quot;</span>&#125;  <span class="comment">#此处为键值对以edge浏览器为例，加入越多请求头越好，求其是cookie同这个User-Agent。</span></span><br><span class="line">data = <span class="built_in">bytes</span>(urllib.parse.urlencode(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;eric&#x27;</span>&#125;),encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">req = urllib.request.Request(url = url,data = data,headers = headers,method = <span class="string">&quot;POST&quot;</span>) <span class="comment"># Request 一个更为完整的封装，header请求头文件，仿真关键，method 访问方式，无method时默认为get请求。</span></span><br><span class="line">response = urllib.requset.urlopen(req)</span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<p>关于请求头文件的获取<br>在打开浏览器时按下F12如下图：<br><img src="/images/qingqiubaotouhuoqu.png" class="lazyload" data-srcset="/images/qingqiubaotouhuoqu.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="请求报头"></p>
-<hr>
-<h2 id="刚开始写文章，多多包涵，如有错误，还请指正。"><a href="#刚开始写文章，多多包涵，如有错误，还请指正。" class="headerlink" title="刚开始写文章，多多包涵，如有错误，还请指正。"></a><strong>刚开始写文章，多多包涵，如有错误，还请指正。</strong></h2>
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-07</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/>https://hacker-hkl.github.io/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/'>
+            阅读全文
+          </a>
         </div>
       
-      
-        <div class='donate'>
-          <div class='imgs'>
-            
-              <img src='/images/zhifubao.png'>
-            
-              <img src='/images/wechat.png'>
-            
+    </div>
+  
+
+</div>
+
           </div>
-        </div>
+        
       
-    </div>
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
   
   
     
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-01T16:28:12+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年5月1日</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/&title=爬虫urllib的使用与补充 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/&title=爬虫urllib的使用与补充 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/05/01/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/&title=爬虫urllib的使用与补充 - hacker-newbie blog&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-  </div>
-
-
+    <h2 class="article-title" >
+      <a href="/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        用hexo+github搭建个人博客
+      </a>
+    </h2>
   
-  
-
-  
-    <div class="prev-next">
+  <div class='md'>
+    
       
-        <a class='prev' href='/2021/05/01/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>用hexo+github搭建个人博客</p>
-          <p class='content'>环境：linux kali下
+        环境：linux kali下
 步骤
 
 安装Node的LTS版本
@@ -639,31 +520,41 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 解压后的文件放在opt目录下
 
 
-查看node、cpm、、cnp...</p>
-        </a>
+查看node、cpm、、cnpm、hexo版本1234$ node -v$ npm -v$ cnpm -v$ hexo -v
+安装淘宝的cnpm管理器1$ npm install -g --registry=http://regi...
       
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
+            阅读全文
+          </a>
+        </div>
       
     </div>
   
-</article>
 
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
-    
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-  </article>
+          </div>
+        
+      
+    
+  </section>
+  
+    
+  
 
 
-
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -671,28 +562,87 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-
-
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
     
-  <header>
+      
+        <a class='avatar flat-box circle' href='/about/'>
+          <img no-lazy src='/images/hacker.jpg'/>
+        </a>
+      
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-  </header>
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:hackerdaren@outlook.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">类的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9A%E5%BC%80%E5%A7%8B%E5%86%99%E6%96%87%E7%AB%A0%EF%BC%8C%E5%A4%9A%E5%A4%9A%E5%8C%85%E6%B6%B5%EF%BC%8C%E5%A6%82%E6%9C%89%E9%94%99%E8%AF%AF%EF%BC%8C%E8%BF%98%E8%AF%B7%E6%8C%87%E6%AD%A3%E3%80%82"><span class="toc-text">刚开始写文章，多多包涵，如有错误，还请指正。</span></a>
-    </div>
-  </section>
+  
+    
+    
 
+  
+
+  
+    
+    
+
+  
 
   
 
 
 </aside>
-
 
 
 		  
@@ -701,8 +651,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="爬虫urllib的使用与补充";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
