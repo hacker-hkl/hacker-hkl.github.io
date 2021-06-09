@@ -2,6 +2,7 @@
 <html lang="zh-CN">
   <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
   <meta charset="utf-8">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- SEO相关 -->
   
     
@@ -102,6 +103,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </head>
 
   <body>
+    <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicklove.js"></script>
     
 
 <header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
@@ -996,9 +998,15 @@ var loadCSS = function( href, before, media, attributes ){
       if (href.length == 0) {
         // 选中文本
         if (window.getSelection().toString()) {
-          if ('' == 'true') {
+          if ('true' == 'true') {
+            let str_luosw = window.getSelection().toString();
             copyText.style.display = 'block';
             hrText.style.display = 'block';
+            copyText.addEventListener("click", function (e) {
+               copyString(str_luosw);
+            }, {
+                once: true
+            });
           }
         }
       }
@@ -1118,6 +1126,68 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            swal({
+             title: '复制成功',
+             text: "代码已复制，请遵守相关授权协议。",
+             icon: 'success',
+             button: "我承诺遵守",
+           });
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000);
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+	volantis.pjax.push(pjax_initCopyCode)
+</script>
 
 
 
@@ -1456,7 +1526,8 @@ function setSearchService() {
 
 
 
-  <script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Colsrch/CDN@master/judge_time/js.js"></csript>
+<script>
 const rootElement = document.documentElement;
 const darkModeStorageKey = "user-color-scheme";
 const rootElementDarkModeAttributeName = "data-user-color-scheme";
@@ -1540,8 +1611,142 @@ volantis.pjax.push(bindToggleButton);
 volantis.pjax.send(()=>{
 	btn.unbind('click');
 },'toggle-mode-btn-unbind');
+// 自动夜间模式
+  if (navigator.geolocation) { //获取地理位置 用于判断日出日落时间
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var res = computeSunRiseSunSet(position.coords.latitude, position.coords.longitude, 8);
+        console.log(res.str)
+        adjust_time(res.strSunRise, res.strSunSet, "08:00", "12:00", "14:00", "23:00")
+      },
+      function (e) {
+        adjust_time("7:00", "17:30", "08:00", "12:00", "14:00", "23:00") //未允许获取地理位置时，使用默认时间
+        console.log("未允许获取地理位置，使用默认配置时间")
+        throw (e.message);
+      }
+    )
+  }
+
+  function adjust_time(beginTime, endTime, morningTime, noonTime, afternoonTime, nightTime) {
+    const rootElement = document.documentElement;
+    var strb = beginTime.split(":");
+    if (strb.length != 2) {
+      return false;
+    }
+
+    var stre = endTime.split(":");
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strmorning = morningTime.split(":"); //12点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strnoon = noonTime.split(":"); //12点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strafternoon = afternoonTime.split(":"); //13点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var strnight = nightTime.split(":"); //23点
+    if (stre.length != 2) {
+      return false;
+    }
+
+    var b = new Date();
+    var e = new Date();
+    var n = new Date();
+    var morning = new Date();
+    var noon = new Date();
+    var afternoon = new Date();
+    var night = new Date();
+
+    b.setHours(strb[0]);
+    b.setMinutes(strb[1]);
+    e.setHours(stre[0]);
+    e.setMinutes(stre[1]);
+    morning.setHours(strmorning[0]);
+    morning.setMinutes(strmorning[1]);
+    noon.setHours(strnoon[0]);
+    noon.setMinutes(strnoon[1]);
+    afternoon.setHours(strafternoon[0]);
+    afternoon.setMinutes(strafternoon[1]);
+    night.setHours(strnight[0]);
+    night.setMinutes(strnight[1]);
+
+
+    //在这里面处理获得的数据
+    if (n.getTime() - b.getTime() > 0 && n.getTime() - e.getTime() < 0) {
+      var daytimetitle = "";
+      var daytimemessage = "";
+      if (n.getTime() - morning.getTime() < 0) {
+        // 早上
+        daytimetitle = "早安";
+      } else if (n.getTime() - noon.getTime() < 0) {
+        // 上午
+        daytimetitle = "上午好";
+      } else if (n.getTime() - afternoon.getTime() < 0) {
+        // 中午
+        daytimetitle = "中午好";
+        daytimemessage = "要注意休息哦~";
+      } else {
+        // 下午
+        daytimetitle = "下午好";
+      } // 判断是否已经开启夜间模式
+      if (rootElement.getAttribute('data-user-color-scheme', 'dark')) { // 已开启夜间模式，修改按钮状态
+        swal(daytimetitle, daytimemessage, "info");
+      } else { // 未开启夜间模式，不执行操作
+        swal("操作通知", daytimetitle + "，已自动为您切换为日间模式。" + daytimemessage, "success");
+        const mode = toggleCustomDarkMode();
+        applyCustomDarkModeSettings(mode);
+      }
+    } else { // 晚上
+      var nighttitle = "";
+      var nightmessage = "";
+      if (night.getTime() - n.getTime() < 0 || n.getTime() - b.getTime() < 0) {
+        nighttitle = "夜深了";
+        nightmessage = "该睡觉啦~";
+      } else {
+        nighttitle = "晚上好";
+        nightmessage = "吃晚饭了吗？要注意眼睛哦。";
+      } // 判断是否已经开启夜间模式
+      if (rootElement.getAttribute('data-user-color-scheme', 'dark')) { // 已开启夜间模式，不执行操作 
+        swal("操作通知", nighttitle + "，已自动为您切换为夜间模式。" + nightmessage, "success");
+        const mode = toggleCustomDarkMode();
+        applyCustomDarkModeSettings(mode);
+      } else { // 未开启夜间模式，修改按钮状态
+        swal(nighttitle, nightmessage, "info");
+      }
+    }
+  }
 </script>
 
+
+
+
+   
+<script src="https://cdn.jsdelivr.net/gh/Goopher97/mycdn@1.5/slider.min.js"></script>
+
+   <script>
+    function pjax_slider() {
+        if($('#slider')[0]) {
+            $("#slider").sliderImg({
+                imgs: ["https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/QQ20210312-022629@2x.png", "https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/QQ20210312-022959@2x.png", "https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/QQ20210312-023228@2x.png", "https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_c3e24bc3d29796c0593475a22f3a11e0_24823.png", "https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/shiyongvolantisgengyouya.png"],
+                link: ["/posts/21510.html", "/posts/50300.html", "/posts/24004.html", "/posts/61617.html", "/posts/16065.html"],
+            });
+        }
+    }
+    $(function () {
+        pjax_slider();
+    });
+    volantis.pjax.push(pjax_slider)
+</script>
 
 
 
