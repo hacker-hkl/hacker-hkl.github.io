@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>【极客大挑战 2019】 *EasySQL*</title>
+      <link href="/2021/07/07/buuctf%20%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91%20EasySQL/"/>
+      <url>/2021/07/07/buuctf%20%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91%20EasySQL/</url>
+      
+        <content type="html"><![CDATA[<p>buuctf: 【极客大挑战 2019】 <em>EasySQL</em><br>上图~~~</p><img src="/buuctf/EasySQL1.PNG" class="lazyload" data-srcset="/buuctf/EasySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><img src="/buuctf/EasySQL2.PNG" class="lazyload" data-srcset="/buuctf/EasySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="界面" style="zoom:60%;" /><p>靶机是这样的一个登陆界面，先试试万能用户名和密码，会出现错误，之后在，密码框进行注入。</p><img src="/buuctf/EasySQL3.PNG" class="lazyload" data-srcset="/buuctf/EasySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="报错" style="zoom:60%;" /><p>这里进行了报错，但不知道什么情况，之后将<strong>or</strong>的双写绕过更换回去，直接给出了flag，可能是我想太多了把。</p><img src="/buuctf/EasySQL4.PNG" class="lazyload" data-srcset="/buuctf/EasySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="flag" style="zoom:60%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SVN泄漏</title>
       <link href="/2021/06/09/SVN%E6%B3%84%E6%BC%8F/"/>
       <url>/2021/06/09/SVN%E6%B3%84%E6%BC%8F/</url>
