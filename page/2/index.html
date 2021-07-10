@@ -6,7 +6,9 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
+      
+        <meta name="robots" content="noindex,follow">
+      
     
   
   <!-- 渲染优化 -->
@@ -25,7 +27,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：python - hacker-newbie blog</title>
+  <title>hacker-newbie blog</title>
   
 
   
@@ -455,22 +457,35 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
       <div id="safearea">
         <div class="body-wrapper" id="pjax-container">
-          
+          <script>
+   swal("欢迎来到 HK-newbie 的小窝：","快看看它有没有吸引到你呀～！","info");
+</script>
+
 
 
 <div class='l_main'>
   
-    
-      
+    <div class="slider">
+    <div id="slider" style="width: 520px; height: 300px;"></div>
+    <div class="hot_post">
+        <div class="index-banner">
+            <a href="/posts/64658.html" target="_self">
+                <img src="https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/QQ20210312-022351@2x.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/QQ20210312-022351@2x.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+            </a>
+        </div>
+        <div class="index-banner forpadding">
+            <a href="/posts/52146.html" target="_self">
+                <img src="https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb872333f9b8822a09d329308f839556_24325.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb872333f9b8822a09d329308f839556_24325.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+  
+
+  
   <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
     
     
       
@@ -483,16 +498,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        爬虫BeautifulSoup模块的使用
+      <a href="/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
+        shadowsocks搭建自己的vpn
       </a>
     </h2>
   
   <div class='md'>
     
       
-        BeautifulSoup是python的一个库，类似于正则表达式但又与其不同，主要用来爬取网页数据，提供一些用来处理导航、搜索、修改、分析树等功能的函数。通过解析文档为用户提供需要抓取的数据，用起来也比较简单。刚才说是通过解析文档，首先要保存文档，接上期获取网页后
-12345html = response.read()html_str = html.decode(&#x27;utf-8&#...
+        在开始下面的步骤前，你首先需要拥有一台海外服务器。下面是在Debian下进行
+进入服务器操作端
+下载shadowsocks1$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh...
       
     
   </div>
@@ -500,15 +516,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-04-05</time>
+        <time>2020-12-07</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/python/">python</a>
+          <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/04/05/%E7%88%AC%E8%99%ABBeautifulSoup%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+          <a class='readmore' href='/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/'>
             阅读全文
           </a>
         </div>
@@ -530,16 +546,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
-        爬虫urllib的使用与补充
+      <a href="/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        用hexo+github搭建个人博客
       </a>
     </h2>
   
   <div class='md'>
     
       
-        关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
-类的使用123import urllib.requesturllib.request.urlopen(文本网址,*data,*timeout) #data为传参的文本，timeout为访问一次的时间节点print(response.stat...
+        环境：linux kali下
+步骤
+
+安装Node的LTS版本
+安装包要放在opt目录
+解压方法：1$ tar -xvf 文件名
+解压后的文件放在opt目录下
+
+
+查看node、cpm、、cnpm、hexo版本1234$ node -v$ npm -v$ cnpm -v$ hexo -v
+安装淘宝的cnpm管理器1$ npm install -g --registry=http://regi...
       
     
   </div>
@@ -547,15 +572,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-03-06</time>
+        <time>2020-12-06</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/python/">python</a>
+          <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
+          <a class='readmore' href='/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
             阅读全文
           </a>
         </div>
@@ -572,11 +597,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </section>
   
     
-  
-
-
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
     
   
+
+
 </div>
 <aside class='l_side'>
   
@@ -713,6 +751,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 </aside>
+
 
 
 		  

