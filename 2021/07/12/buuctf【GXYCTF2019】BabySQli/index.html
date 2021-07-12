@@ -6,8 +6,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -25,7 +23,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2020 - hacker-newbie blog</title>
+  <title>【GXYCTF2019】BabySQli - hacker-newbie blog</title>
   
 
   
@@ -380,7 +378,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
       
         
-          <div class="cover-wrapper  dock" id='half'>
+          <div class="cover-wrapper post dock" id='half'>
             
               <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
             
@@ -458,132 +456,271 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
-      
+    
+    
+      <h1 class="title">
+        【GXYCTF2019】BabySQli
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/images/hacker.jpg">
+    <p>hacker-newbie</p>
+  </a>
+</div>
+
           
         
           
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/">
-        shadowsocks搭建自己的vpn
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        在开始下面的步骤前，你首先需要拥有一台海外服务器。下面是在Debian下进行
-进入服务器操作端
-下载shadowsocks1$ wget --no-check-certificate -o shadowsocks.sh https://raw.githubsercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh...
-      
-    
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2020-12-07</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月12日</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="【GXYCTF2019】BabySQli" data-path="/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <p>上图~~~</p>
+<img src="/buuctf/DBabySQL1.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL1" style="zoom:60%;" />
+
+<p><img src="/buuctf/DBabySQL2.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。</p>
+<p>打开burp suite抓了包并对其进行了篡改，但并没有什么用。</p>
+<img src="/buuctf/DBabySQL3.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL3" style="zoom:60%;" />
+
+<p>然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码</p>
+<img src="/buuctf/DBabySQL4.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL4" style="zoom:60%;" />
+
+<p>然后用base32解码后发现还要base64解码。</p>
+<p>出来是<code>select * from user where username = &#39;$name&#39;</code></p>
+<p>这就可以看出这道题是对数据库进行查询的。</p>
+<p>然后用刚刚了解到的fuzz测试测了下。啊~我这个fuzz字典感觉不是很好吧。</p>
+<p><img src="/buuctf/DBabySQL5.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL5"></p>
+<p>虽然不是很好，但还是看得出对哪些字符有过滤的，得知对联合查询并没有过滤但是对order、or、=等字符进行了过滤。</p>
+<p>这里只能用unions elect代替order by了。</p>
+<p>输入1’ unions elect 1,2,3,4# 返回错误 再试试 1’ union select 1,2,3#返回正确。</p>
+<p>可以得知有3列字段。</p>
+<p>这里使用联合查询数据库，报错注入查询，都不行。感觉没辙了，再试试时间注入。</p>
+<p><img src="/buuctf/DBabySQL7.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL7.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>结果都显示这个。麻了，然后查阅了大佬的博客发现一个新的知识点。</p>
+<p><strong>联合查询并不存在的数据时，联合查询就会构造一个虚拟的数据。</strong></p>
+<p>上面的尝试中，我们应该可以发现，admin的用户是存在的。</p>
+<p>在知识点中，我是这样理解的，在联合查询一个并不存在的数据，他会构造一个虚拟的数据，我们利用这个虚拟的数据是可以登陆成功的。</p>
+<p>大佬给的数据是这样的：</p>
+<p>密码: 1234</p>
+<p>MD5：81dc9bdb52d04dc20036dbd8313ed055</p>
+<p>然后构造playload:</p>
+<p>账号：1’ union select 1,’admin’,’81dc9bdb52d04dc20036dbd8313ed055’#</p>
+<p>密码：1234</p>
+<p>注意账号这里不能使用admin 具体我不清楚，我试了是不可以的。然后就直接拿到了flag。就是sqli-labs这个例子。</p>
+<img src="/buuctf/DBabySQL8.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL8.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL8" style="zoom:60%;" />
+
+<p>他是可以显示的，也就说明它虽不是真实的，但它是存在的。</p>
+<p>原理就是构造一个虚拟身份来绕过审核机制。</p>
+<p><img src="/buuctf/DBabySQL6.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL6"></p>
+<p> [参考文献]                             <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46412682/article/details/107948262">参考大佬博客</a><br>                                  <a href="ttps://yuaneuro.cn/archives/21.html">联合查询构造虚拟数据 知识点详解</a></p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2020/12/07/shadowsocks%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84vpn/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/>https://hacker-hkl.github.io/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='/images/zhifubao.png'>
+            
+              <img src='/images/wechat.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-12T23:50:38+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年7月12日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-        用hexo+github搭建个人博客
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        环境：linux kali下
-步骤
-
-安装Node的LTS版本
-安装包要放在opt目录
-解压方法：1$ tar -xvf 文件名
-解压后的文件放在opt目录下
-
-
-查看node、cpm、、cnpm、hexo版本1234$ node -v$ npm -v$ cnpm -v$ hexo -v
-安装淘宝的cnpm管理器1$ npm install -g --registry=http://regi...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/07/12/buuctf%E3%80%90GXYCTF2019%E3%80%91BabySQli/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time>2020-12-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2020/12/06/%E7%94%A8hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'>
-            阅读全文
-          </a>
-        </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/07/12/buuctf%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91HardSQL/'>
+          <p class='title'>【极客大挑战 2019】HardSQL<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>上图~~~
+
+
+
+
+看来设计者还是盲目自信呀，这一看就是数据库操作，过滤了一些特殊字符而已。
+试了下二次注入，被过滤了。然后就开始操作，一直注入一直错误。
+
+
+还说我是臭弟弟，看样子普通注入不怎...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -591,135 +728,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='/images/hacker.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:hackerdaren@outlook.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/hacker-hkl/hacker-hkl.github.io.git"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/ctf/" href="/categories/ctf/"
-            id="categoriesctf"
-            ><div class='name'>ctf</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/buuctf-web/" href="/categories/ctf/buuctf-web/"
-            id="categoriesctfbuuctf-web"
-            ><div class='name'>buuctf-web</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/ctfhub-web/" href="/categories/ctf/ctfhub-web/"
-            id="categoriesctfctfhub-web"
-            ><div class='name'>ctfhub-web</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/python/" href="/categories/python/"
-            id="categoriespython"
-            ><div class='name'>python</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"
-            id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9CE58E9FE79086"
-            ><div class='name'>计算机网络原理</div><div class='badge'>(2)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -728,8 +744,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="【GXYCTF2019】BabySQli";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
