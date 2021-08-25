@@ -20,7 +20,7 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1629640407320" as="style">
+  <link rel="preload" href="/css/style.css?time=1629878626147" as="style">
   <!-- 页面元数据 -->
   <title>归档：2021/8 - hacker-newbie blog</title>
   <meta name="keywords" content="null">
@@ -1814,8 +1814,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1629640407320" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1629640407320"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1629878626147" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1629878626147"></noscript>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2292,20 +2292,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91upload/">
-        【极客大挑战 2019】upload
+      <a href="/2021/08/15/Simple_SSTI_1/">
+        bugku：Simple_SSTI_1
       </a>
     </h2>
   
   <div class='md'>
     
       
-        让上传头像，试了试上传php文件，不可以。
-将php文件换成jpg，里面是一句话。但是被检测出来了。加了GIF89a同样被检测。
+        
+题目页面就是一串提示，需要传入一个名为flag的参数。/?flag=
+然后没了提示，看看网页源码。
 
-试试用js包裹。但是这里文件的格式就不能是jpg了，试了html不行，但是可以用phtml
-&lt;script language=&quot;php&quot;&gt;eval($POST[123])&lt;/script&gt;
-然后返回说它不是图片。这时我...
+说在flask里有一个secret_key的变量。
+这里我们要读取变量。
+/?flag=&#123;&#123;config.items()&#125;&#125;
+
+这样找到secret_key变量即可，后边就是flag。
+
+
       
     
   </div>
@@ -2313,15 +2318,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-15</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/bugku-web/">bugku-web</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91upload/'>
+          <a class='readmore' href='/2021/08/15/Simple_SSTI_1/'>
             阅读全文
           </a>
         </div>
@@ -2343,22 +2348,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Http/">
-        【极客大挑战 2019】Http
+      <a href="/2021/08/15/ctfshow%E5%85%A5%E9%97%A8%20%E7%88%86%E7%A0%B4/">
+        ctfshow web入门爆破
       </a>
     </h2>
   
   <div class='md'>
     
       
-        
-这是一道http的题，先打开burpsuite。
-在target栏下看到其中还有一个secret.php页面。这是第一步。
-
-打开后显示请求不是来自”https://www.Sycsecret.com&quot;。
-
-这是我们需要加入Referer响应头。它提供了引导用户代理到当前页的信息，用于统计文章来源和图片防盗连接。本题类似于图片防盗链接的应用。
-将此页面发送到burp suite的...
+        信息搜集补充网页源码，burpsuite，robots.txt，phps源码泄露，扫源码，版本控制(  git代码泄露(url/.git/index.php)，url/.svn/），vim缓存(index.php.swp)，cookie，使用nslookup命令查看DNS记录(nslookup -qt=txt) ，通过dns检查https://zijian.aliyun.com/，网上公开信...
       
     
   </div>
@@ -2366,15 +2364,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-15</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/ctfshow-web/">ctfshow-web</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Http/'>
+          <a class='readmore' href='/2021/08/15/ctfshow%E5%85%A5%E9%97%A8%20%E7%88%86%E7%A0%B4/'>
             阅读全文
           </a>
         </div>
@@ -2396,19 +2394,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Knife/">
-        【极客大挑战 2019】Knife
+      <a href="/2021/08/08/%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DInclude/">
+        【ACTF2020 新生赛】Include
       </a>
     </h2>
   
   <div class='md'>
     
       
-        页面看到一句话木马
+        文件包含。
+先尝试input伪协议。
 
-然后用中国菜刀连接下。并没有那么复杂，直接就可以连接上。
+发现被过滤了，然后我们还可以尝试filter伪协议来继续包含。
+构造payload:php://filter/read=convert.base64-encode/resource=flag.php
+然后显示了一行base64编码。
 
-在根目录找到flag.
+将其进行解码即可。
+[参考文章]                  文件包含漏洞总结
 
 
       
@@ -2418,7 +2420,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-08</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
@@ -2426,7 +2428,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Knife/'>
+          <a class='readmore' href='/2021/08/08/%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DInclude/'>
             阅读全文
           </a>
         </div>
@@ -2448,7 +2450,153 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Secret%20File/">
+      <a href="/2021/08/08/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
+        php反序列化漏洞
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那么攻击者可能利用这点构造一段恶意代码执行，这就是反序列化漏洞。
+php中提供了一些魔法函数，这些函数可以直接使用，不需要声明，常用的魔法函数如下：
+
+__construct()创建对象时被调用
+__d...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/08/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/">
+        【ACTF2020 新生赛】Backupfile
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        这是一个关于备份文件的题
+然后页面又提示尝试长出源文件。不难得知，这里找到网页的源文件备份，index.php.bak
+同时这里还有一个网站的源码备份文件后缀[&#39;tar&#39;,&#39;tar.gz&#39;,&#39;zip&#39;,&#39;rar&#39;]及常见的源码备份文件名[&#39;web&#39;,&#39;website&#39;,&#39;backup&#3...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/08/%E3%80%90RoarCTF%202019%E3%80%91Easy%20Calc/">
+        【RoarCTF 2019】Easy Calc
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        首先了解下**CSS3 calc()**函数的计算实现。
+calc其实是calculate 计算 的缩写形式，用于动态计算长度值
+需要注意的是，运算符前后都需要保留一个空格，例如：width: calc(100% - 10px)；任何长度值都可以使用calc()函数进行计算；calc()函数支持 “+”, “-“, “*”, “/“ 运算；calc()函数使用标准的数学运算优先级规则；可以使...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/08/08/%E3%80%90RoarCTF%202019%E3%80%91Easy%20Calc/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/08/08/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Secret%20File/">
         【极客大挑战 2019】Secrit File
       </a>
     </h2>
@@ -2473,7 +2621,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-08</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
@@ -2481,7 +2629,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Secret%20File/'>
+          <a class='readmore' href='/2021/08/08/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Secret%20File/'>
             阅读全文
           </a>
         </div>
@@ -2503,24 +2651,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DEasySQL/">
-        【极客大挑战 2019】 *EasySQL*
+      <a href="/2021/08/01/%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DExec/">
+        【ACTF2020 新生赛】Exec
       </a>
     </h2>
   
   <div class='md'>
     
       
-        buuctf: 【极客大挑战 2019】 EasySQL上图~~~
+        
+使用管道符|列出文件。
+127.0.0.1|ls ../../../
 
-
-
-
-靶机是这样的一个登陆界面，先试试万能用户名和密码，会出现错误，之后在，密码框进行注入。
-
-
-这里进行了报错，但不知道什么情况，之后将or的双写绕过更换回去，直接给出了flag，可能是我想太多了把。
-
+然后继续查看flag
+127.0.0.1|cat ../../../flag
+得到flag
+同时还可以127.0.0.1||ls /cat /flag
+知识点：管道符的使用：连续使用管道意味着第一个命令的输出会作为 第二个命令的输入，也就是返回上一级一定注意空格！！
 
 
       
@@ -2530,7 +2677,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-01</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
@@ -2538,7 +2685,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DEasySQL/'>
+          <a class='readmore' href='/2021/08/01/%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DExec/'>
             阅读全文
           </a>
         </div>
@@ -2560,28 +2707,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHardSQL/">
-        【极客大挑战 2019】HardSQL
+      <a href="/2021/08/01/%5BHCTE%202018%5DWarmUp/">
+        【HCTE 2018】WarmUp
       </a>
     </h2>
   
   <div class='md'>
     
       
-        上图~~~
+        进去只看到一个滑稽表情，然后打开网页源代码可以看到source.php然后访问。
 
-
-
-
-看来设计者还是盲目自信呀，这一看就是数据库操作，过滤了一些特殊字符而已。
-试了下二次注入，被过滤了。然后就开始操作，一直注入一直错误。
-
-
-还说我是臭弟弟，看样子普通注入不怎么行了，试试报错注入。在测试的过程中发现其过滤了空格和联合注入，等号。
-
-
-在报错的过程中，我们可以将空格用括号代替，将等号用like代替。%23代替#，这样查到了geek库名
-再查表:or(upda...
+打开后是php代码审计。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849![warmup3](C:\Users\hacke\Desktop\buuctf\warmup3.PNG)...
       
     
   </div>
@@ -2589,7 +2726,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-08-01</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
@@ -2597,176 +2734,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHardSQL/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHavefun/">
-        【极客大挑战 2019】Havefun
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-看到个动态猫，然后看网页源代码有如下注释
-12345$cat=$_GET[&#x27;cat&#x27;];echo $cat;if($cat==&#x27;dog&#x27;)&#123;    echo &#x27;Syc&#123;cat_cat_cat_cat&#125;&#x27;; &#125;
-
-猜想为get传输，然后尝试?cat=dog直接出flag。
-
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHavefun/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DbabySQL/">
-        【极客大挑战 2019】babySQL
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        上图~~~
-
-
-
-
-从tip可以看到对数据进行了过滤，真以为双写绕过就可以了？？我们就要进行各种绕过。
-开始试了下二次注入，发现登陆成功，给了一串令人深思数字，结果发现屁都没有。
-
-
-可以推断这道题需要查数据库，刚开始各种尝试，各种绕过，各种错误。
-
-可以看到，这里对空格、注释符和union等进行了过滤。需要双写过滤，并且对符号进行url编码。
-
-
-这里我对where后面的搜索值直接进行了十...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DbabySQL/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DloveSQL/">
-        【极客大挑战 2019】LoveSQL
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        上图~~~
-
-
-
-
-哇，该死的我看到tip就知道该怎么做了。不罗嗦，直接查数据库。上图先试了下二次注入，然后就是试不下去了，直接查吧！试了试发现其中有过滤机制。
-先查库：?username=admin&amp;password=ad&#39;%20union%20select%201,database(),2%23
-
-
-发现在geek库
-接下来查表：?username=admin&amp;p...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/20/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DloveSQL/'>
+          <a class='readmore' href='/2021/08/01/%5BHCTE%202018%5DWarmUp/'>
             阅读全文
           </a>
         </div>
@@ -2787,7 +2755,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div class="prev-next">
         
         <p class="current">
-          1 / 3
+          1 / 2
         </p>
         
           <a class="next" rel="next" href="/archives/2021/08/page/2/">
@@ -3563,7 +3531,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
-    volantis.js('/js/rightMenu.js?time=1629640407320')
+    volantis.js('/js/rightMenu.js?time=1629878626147')
   </script>
 
 
@@ -3577,19 +3545,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1629640407320")
+        volantis.js("/js/plugins/sites.js?time=1629878626147")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1629640407320")
+        volantis.js("/js/plugins/friends.js?time=1629878626147")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1629640407320")
+        volantis.js("/js/plugins/contributors.js?time=1629878626147")
       }
     
   };
@@ -3662,7 +3630,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1629640407322')
+      await volantis.js('/js/aplayer.js?time=1629878626149')
       volantis.APlayerController.music = true;
     
   })();
@@ -3757,7 +3725,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1629640407320').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1629878626147').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -3766,7 +3734,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-<script src="/js/app.js?time=1629640407320.js"></script>
+<script src="/js/app.js?time=1629878626147.js"></script>
 
 
 <!-- optional -->
@@ -3779,7 +3747,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1629640407320");
+    return volantis.js("/js/search/hexo.js?time=1629878626147");
   }
 
   function loadSearchService() {
@@ -4047,8 +4015,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1629640407320')
-      volantis.js('/js/message.js?time=1629640407320', () => {
+      volantis.css('/css/message.css?time=1629878626147')
+      volantis.js('/js/message.js?time=1629878626147', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -4092,8 +4060,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1629640407320')
-      volantis.js('/js/message.js?time=1629640407320', () => {
+      volantis.css('/css/message.css?time=1629878626147')
+      volantis.js('/js/message.js?time=1629878626147', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {

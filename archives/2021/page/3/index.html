@@ -20,7 +20,7 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1629640407303" as="style">
+  <link rel="preload" href="/css/style.css?time=1629878626127" as="style">
   <!-- 页面元数据 -->
   <title>归档：2021 - hacker-newbie blog</title>
   <meta name="keywords" content="null">
@@ -1814,8 +1814,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1629640407303" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1629640407303"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1629878626127" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1629878626127"></noscript>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2221,25 +2221,29 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/Simple_SSTI_1/">
-        bugku：Simple_SSTI_1
+      <a href="/2021/07/11/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DbabySQL/">
+        【极客大挑战 2019】babySQL
       </a>
     </h2>
   
   <div class='md'>
     
       
-        
-题目页面就是一串提示，需要传入一个名为flag的参数。/?flag=
-然后没了提示，看看网页源码。
-
-说在flask里有一个secret_key的变量。
-这里我们要读取变量。
-/?flag=&#123;&#123;config.items()&#125;&#125;
-
-这样找到secret_key变量即可，后边就是flag。
+        上图~~~
 
 
+
+
+从tip可以看到对数据进行了过滤，真以为双写绕过就可以了？？我们就要进行各种绕过。
+开始试了下二次注入，发现登陆成功，给了一串令人深思数字，结果发现屁都没有。
+
+
+可以推断这道题需要查数据库，刚开始各种尝试，各种绕过，各种错误。
+
+可以看到，这里对空格、注释符和union等进行了过滤。需要双写过滤，并且对符号进行url编码。
+
+
+这里我对where后面的搜索值直接进行了十...
       
     
   </div>
@@ -2247,15 +2251,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-07-11</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/bugku-web/">bugku-web</a>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/Simple_SSTI_1/'>
+          <a class='readmore' href='/2021/07/11/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DbabySQL/'>
             阅读全文
           </a>
         </div>
@@ -2277,7 +2281,123 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/20/git%E6%B3%84%E6%BC%8F/">
+      <a href="/2021/07/11/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DloveSQL/">
+        【极客大挑战 2019】LoveSQL
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        上图~~~
+
+
+
+
+哇，该死的我看到tip就知道该怎么做了。不罗嗦，直接查数据库。上图先试了下二次注入，然后就是试不下去了，直接查吧！试了试发现其中有过滤机制。
+先查库：?username=admin&amp;password=ad&#39;%20union%20select%201,database(),2%23
+
+
+发现在geek库
+接下来查表：?username=admin&amp;p...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-07-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/07/11/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DloveSQL/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/01/SVN%E6%B3%84%E6%BC%8F/">
+        SVN泄漏
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        SVN泄露
+
+解题环境：kali linux
+工具：svnExploit
+
+
+获取svnExploit模块
+1git clone https://github.com/admintony/svnExploit
+
+解题过程与git泄露类似
+
+文件在模块的dbs路径下，打开即可，结果发现神马也没有。
+去Baidu一波发现还有个dvcs-ripper的工具
+工具获取
+1git clone http...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-05-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/ctfhub-web/">ctfhub-web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/05/01/SVN%E6%B3%84%E6%BC%8F/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/05/01/git%E6%B3%84%E6%BC%8F/">
         git泄漏
       </a>
     </h2>
@@ -2306,7 +2426,7 @@ GitHack.py模块下载
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-05-01</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/ctfhub-web/">ctfhub-web</a>
@@ -2314,103 +2434,7 @@ GitHack.py模块下载
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/20/git%E6%B3%84%E6%BC%8F/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/20/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
-        php反序列化漏洞
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那么攻击者可能利用这点构造一段恶意代码执行，这就是反序列化漏洞。
-php中提供了一些魔法函数，这些函数可以直接使用，不需要声明，常用的魔法函数如下：
-
-__construct()创建对象时被调用
-__d...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/20/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/20/ctfshow%E5%85%A5%E9%97%A8%20%E7%88%86%E7%A0%B4/">
-        ctfshow web入门爆破
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        信息搜集补充网页源码，burpsuite，robots.txt，phps源码泄露，扫源码，版本控制(  git代码泄露(url/.git/index.php)，url/.svn/），vim缓存(index.php.swp)，cookie，使用nslookup命令查看DNS记录(nslookup -qt=txt) ，通过dns检查https://zijian.aliyun.com/，网上公开信...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/ctfshow-web/">ctfshow-web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/20/ctfshow%E5%85%A5%E9%97%A8%20%E7%88%86%E7%A0%B4/'>
+          <a class='readmore' href='/2021/05/01/git%E6%B3%84%E6%BC%8F/'>
             阅读全文
           </a>
         </div>
@@ -3404,7 +3428,7 @@ __d...
     
     
     
-    volantis.js('/js/rightMenu.js?time=1629640407303')
+    volantis.js('/js/rightMenu.js?time=1629878626127')
   </script>
 
 
@@ -3418,19 +3442,19 @@ __d...
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1629640407303")
+        volantis.js("/js/plugins/sites.js?time=1629878626127")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1629640407303")
+        volantis.js("/js/plugins/friends.js?time=1629878626127")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1629640407303")
+        volantis.js("/js/plugins/contributors.js?time=1629878626127")
       }
     
   };
@@ -3503,7 +3527,7 @@ __d...
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1629640407305')
+      await volantis.js('/js/aplayer.js?time=1629878626129')
       volantis.APlayerController.music = true;
     
   })();
@@ -3598,7 +3622,7 @@ __d...
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1629640407303').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1629878626127').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -3607,7 +3631,7 @@ __d...
 
 
 
-<script src="/js/app.js?time=1629640407303.js"></script>
+<script src="/js/app.js?time=1629878626127.js"></script>
 
 
 <!-- optional -->
@@ -3620,7 +3644,7 @@ __d...
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1629640407303");
+    return volantis.js("/js/search/hexo.js?time=1629878626127");
   }
 
   function loadSearchService() {
@@ -3888,8 +3912,8 @@ __d...
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1629640407303')
-      volantis.js('/js/message.js?time=1629640407303', () => {
+      volantis.css('/css/message.css?time=1629878626127')
+      volantis.js('/js/message.js?time=1629878626127', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -3933,8 +3957,8 @@ __d...
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1629640407303')
-      volantis.js('/js/message.js?time=1629640407303', () => {
+      volantis.css('/css/message.css?time=1629878626127')
+      volantis.js('/js/message.js?time=1629878626127', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
