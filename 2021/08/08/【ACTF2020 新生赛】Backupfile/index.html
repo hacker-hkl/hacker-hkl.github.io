@@ -20,7 +20,7 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1631283058849" as="style">
+  <link rel="preload" href="/css/style.css?time=1631541606120" as="style">
   <!-- 页面元数据 -->
   <title>【ACTF2020 新生赛】Backupfile - hacker-newbie blog</title>
   <meta name="keywords" content="null">
@@ -33,7 +33,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2021-08-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-25T08:01:04.787Z">
+<meta property="article:modified_time" content="2021-09-13T13:56:15.015Z">
 <meta property="article:author" content="hacker-newbie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
@@ -2201,8 +2201,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1631283058849" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1631283058849"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1631541606120" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1631541606120"></noscript>
     <script>
       var userColorScheme=localStorage.getItem("user-color-scheme")
       if(userColorScheme){
@@ -2699,8 +2699,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>但这里要的是网页的源文件，并不是网站源码。</p>
 <p>并且刚开始用<strong>御剑</strong>扫描了一下，并没有扫描出来。</p>
 <p>常见的备份文件后缀名有<code>.git .svn .swp .~ .bak .bash_history</code></p>
-<p><strong>bak</strong> 备份文件，一般是被自动或是通过命令创建的辅助文件，它包含某个文件的最近一个版本，并且具有于该文件相同的文件名</p>
-<p>先写个py跑下</p>
+<p><strong>bak</strong> 备份文件，一般是被自动或是通过命令创建的辅助文件，它包含某个文件的最近一个版本，并且具有于该文件相同的文件名<br>可以使用dirsearch一款基于python3的目录爆破工具进行扫面<br>下载地址  <a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a><br>使用</p>
+<p>-u 指定url</p>
+<p>-e 指定网站语言</p>
+<p>-w 可以加上自己的字典（带上路径）</p>
+<p>-r 递归跑（查到一个目录后，在目录后在重复跑，很慢，不建议用）</p>
+<p>进入dirsearch目录后</p>
+<p>执行./dirsearch.py -u 127.0.0.1 -e php类似的目录<br>先写个py跑下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://17851ecd-6960-4dc3-bd44-923e2d58c7fa.node4.buuoj.cn/index.php&quot;</span></span><br><span class="line">re1 = [<span class="string">&#x27;git&#x27;</span>,<span class="string">&#x27;svn&#x27;</span>,<span class="string">&#x27;swp&#x27;</span>,<span class="string">&#x27;~&#x27;</span>,<span class="string">&#x27;bak&#x27;</span>,<span class="string">&#x27;bash_history&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> re1:</span><br><span class="line">    url_end = url + <span class="string">&#x27;.&#x27;</span> + i</span><br><span class="line">    res = requests.get(url_end)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
 
 <p>啊，有点尴尬，用py脚本跑出来都是200状态码,只能手动试试了，试了之后找到bak备份文件。备份文件是php</p>
@@ -2790,10 +2795,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T16:01:04+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-13T21:56:15+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月25日</p>
+    <p>更新于：2021年9月13日</p>
   </a>
 </div>
 
@@ -2869,9 +2874,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/08/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>php反序列化漏洞</p>
-          <p class='content'>php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那...</p>
+        <a class='prev' href='/2021/08/08/%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DInclude/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>【ACTF2020 新生赛】Include</p>
+          <p class='content'>文件包含。
+先尝试input伪协议。
+
+发现被过滤了，然后我们还可以尝试filter伪协议来继续包含。
+构造payload:php://filter/read=convert.base64-en...</p>
         </a>
       
       
@@ -3790,7 +3799,7 @@ calc其实是calculate 计算 的缩写形式，用于动态计算长度值
     
     
     
-    volantis.js('/js/rightMenu.js?time=1631283058849')
+    volantis.js('/js/rightMenu.js?time=1631541606120')
   </script>
 
 
@@ -3904,19 +3913,19 @@ volantis.pjax.push(bindToggleButton);
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1631283058849")
+        volantis.js("/js/plugins/sites.js?time=1631541606120")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1631283058849")
+        volantis.js("/js/plugins/friends.js?time=1631541606120")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1631283058849")
+        volantis.js("/js/plugins/contributors.js?time=1631541606120")
       }
     
   };
@@ -3989,7 +3998,7 @@ volantis.pjax.push(bindToggleButton);
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1631283058852')
+      await volantis.js('/js/aplayer.js?time=1631541606133')
       volantis.APlayerController.music = true;
     
   })();
@@ -4084,7 +4093,7 @@ volantis.pjax.push(bindToggleButton);
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1631283058849').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1631541606120').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -4093,7 +4102,7 @@ volantis.pjax.push(bindToggleButton);
 
 
 
-<script src="/js/app.js?time=1631283058849.js"></script>
+<script src="/js/app.js?time=1631541606120.js"></script>
 
 
 <!-- optional -->
@@ -4106,7 +4115,7 @@ volantis.pjax.push(bindToggleButton);
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1631283058849");
+    return volantis.js("/js/search/hexo.js?time=1631541606120");
   }
 
   function loadSearchService() {
@@ -4374,8 +4383,8 @@ volantis.pjax.push(bindToggleButton);
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058849')
-      volantis.js('/js/message.js?time=1631283058849', () => {
+      volantis.css('/css/message.css?time=1631541606120')
+      volantis.js('/js/message.js?time=1631541606120', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -4419,8 +4428,8 @@ volantis.pjax.push(bindToggleButton);
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058849')
-      volantis.js('/js/message.js?time=1631283058849', () => {
+      volantis.css('/css/message.css?time=1631541606120')
+      volantis.js('/js/message.js?time=1631541606120', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
@@ -4581,7 +4590,7 @@ volantis.pjax.push(bindToggleButton);
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/","name":"ctf"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/buuctf-web/","name":"buuctf-web"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/08/08/【ACTF2020 新生赛】Backupfile/","name":"【ACTF2020 新生赛】Backupfile"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"【ACTF2020 新生赛】Backupfile","description":"","datePublished":"2021-08-07T16:00:00.000Z","dateModified":"2021-08-25T08:01:04.787Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/","wordCount":0,"articleSection":"ctf"}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/","name":"ctf"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/buuctf-web/","name":"buuctf-web"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/08/08/【ACTF2020 新生赛】Backupfile/","name":"【ACTF2020 新生赛】Backupfile"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"【ACTF2020 新生赛】Backupfile","description":"","datePublished":"2021-08-07T16:00:00.000Z","dateModified":"2021-09-13T13:56:15.015Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/08/08/%E3%80%90ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%E3%80%91Backupfile/","wordCount":0,"articleSection":"ctf"}]</script>
 
 
 <!-- more -->

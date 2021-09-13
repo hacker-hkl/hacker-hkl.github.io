@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="https://hacker-hkl.github.io/2021/07/11/[gxyctf2019]babysqli/"/>
+  <link rel="canonical" href="https://hacker-hkl.github.io/2021/09/13/php反序列化漏洞/"/>
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -20,20 +20,20 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1631283058958" as="style">
+  <link rel="preload" href="/css/style.css?time=1631541606095" as="style">
   <!-- 页面元数据 -->
-  <title>【GXYCTF2019】BabySQli - hacker-newbie blog</title>
+  <title>php反序列化漏洞 - hacker-newbie blog</title>
   <meta name="keywords" content="null">
-  <meta name="description" content="上图~~~    界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。 打开burp suite抓了包并对其进行了篡改，但并没有什么用。   然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码   然后用base32解码后发现还要base64解码。 出来是select * from user where username &#x3D; &#39;$n">
+  <meta name="description" content="反序列化首先，反序列化(unserialize)对应序列化(serialize),通俗理解就是后者将对象转化为字符串，前者将字符串转化为对象，但是由于前者的可操作性带来了危害。 php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那么攻击者可能利用这点构造一段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【GXYCTF2019】BabySQli">
-<meta property="og:url" content="https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/index.html">
+<meta property="og:title" content="php反序列化漏洞">
+<meta property="og:url" content="https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="hacker-newbie blog">
-<meta property="og:description" content="上图~~~    界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。 打开burp suite抓了包并对其进行了篡改，但并没有什么用。   然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码   然后用base32解码后发现还要base64解码。 出来是select * from user where username &#x3D; &#39;$n">
+<meta property="og:description" content="反序列化首先，反序列化(unserialize)对应序列化(serialize),通俗理解就是后者将对象转化为字符串，前者将字符串转化为对象，但是由于前者的可操作性带来了危害。 php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那么攻击者可能利用这点构造一段">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2021-07-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-25T07:55:07.267Z">
+<meta property="article:published_time" content="2021-09-13T13:42:30.715Z">
+<meta property="article:modified_time" content="2021-09-13T13:59:05.811Z">
 <meta property="article:author" content="hacker-newbie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
@@ -2201,8 +2201,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1631283058958" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1631283058958"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1631541606095" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1631541606095"></noscript>
     <script>
       var userColorScheme=localStorage.getItem("user-color-scheme")
       if(userColorScheme){
@@ -2631,7 +2631,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        【GXYCTF2019】BabySQli
+        php反序列化漏洞
       </h1>
       <div class='new-meta-box'>
         
@@ -2648,13 +2648,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/ctf/">ctf</a><span class="sep"></span><a class="category-link" href="/categories/ctf/buuctf-web/">buuctf-web</a>
-    </a>
-  </div>
-
 
           
         
@@ -2662,7 +2655,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年7月11日</p>
+    <p>发布于：2021年9月13日</p>
   </a>
 </div>
 
@@ -2673,7 +2666,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="【GXYCTF2019】BabySQli" data-path="/2021/07/11/%5BGXYCTF2019%5DbabySQLi/">
+      <div id="lc-pv" data-title="php反序列化漏洞" data-path="/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -2693,45 +2686,167 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div id="page-plugins-helper"></div>
-  <p>上图~~~</p>
-<img src="/buuctf/DBabySQL1.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL1.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL1" style="zoom:60%;" />
+  <h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><p>首先，反序列化(unserialize)对应序列化(serialize),通俗理解就是后者将对象转化为字符串，前者将字符串转化为对象，但是由于前者的可操作性带来了危害。</p>
+<p>php反序列化漏洞主要操作的是对象，也可以称为php对象注入漏洞，当调用unserialize函数对一个对象进行反序列时，如果该对象内部使用了魔法函数，并且魔法函数中包含了一些危险可控的操作，那么攻击者可能利用这点构造一段恶意代码执行，这就是反序列化漏洞。</p>
+<p>php中提供了一些魔法函数，这些函数可以直接使用，不需要声明，常用的魔法函数如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>调用条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__call</td>
+<td>调用不可访问或不存在的方法时被调用</td>
+</tr>
+<tr>
+<td>__callStatic</td>
+<td>调用不可访问或不存在的静态方法时被调用</td>
+</tr>
+<tr>
+<td>__clone</td>
+<td>进行对象clone时被调用，用来调整对象的克隆行为</td>
+</tr>
+<tr>
+<td>__constuct</td>
+<td>构建对象的时被调用；(但在unserialize()时是不会自动调用的)。</td>
+</tr>
+<tr>
+<td>__debuginfo</td>
+<td>当调用var_dump()打印对象时被调用（当你不想打印所有属性）适用于PHP5.6版本</td>
+</tr>
+<tr>
+<td>__destruct</td>
+<td>明确销毁对象或脚本结束时被调用；</td>
+</tr>
+<tr>
+<td>__get</td>
+<td>读取不可访问或不存在属性时被调用</td>
+</tr>
+<tr>
+<td>__invoke</td>
+<td>当以函数方式调用对象时被调用</td>
+</tr>
+<tr>
+<td>__isset</td>
+<td>对不可访问或不存在的属性调用isset()或empty()时被调用</td>
+</tr>
+<tr>
+<td>__set</td>
+<td>当给不可访问或不存在属性赋值时被调用</td>
+</tr>
+<tr>
+<td>__set_state</td>
+<td>当调用var_export()导出类时，此静态方法被调用。用__set_state的返回值做为var_export的返回值。</td>
+</tr>
+<tr>
+<td>__sleep</td>
+<td>当使用serialize时被调用，当你不需要保存大对象的所有数据时很有用</td>
+</tr>
+<tr>
+<td>__toString</td>
+<td>当一个类被转换成字符串时被调用</td>
+</tr>
+<tr>
+<td>__unset</td>
+<td>对不可访问或不存在的属性进行unset时被调用</td>
+</tr>
+<tr>
+<td>__wakeup</td>
+<td>当使用unserialize时被调用，可用于做些对象的初始化操作</td>
+</tr>
+</tbody></table>
+<p>这里先以<code>_toString()</code>函数为例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test1</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$file_name</span>;</span><br><span class="line">	<span class="comment">//当对象当做字符串使用会被自动调用</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> file_get_contents(<span class="keyword">$this</span>-&gt;file_name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$test1</span> = <span class="keyword">new</span> Test1();</span><br><span class="line"><span class="comment">//序列化</span></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="variable">$test1</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test2</span></span>&#123;	</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test2_unserialize</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//反序列化test1对象</span></span><br><span class="line">		<span class="comment">//file_name文件即test.txt</span></span><br><span class="line">		<span class="variable">$test1_str</span> = <span class="string">&#x27;O:5:&quot;Test1&quot;:1:&#123;s:9:&quot;file_name&quot;;s:8:&quot;test.txt&quot;;&#125;&#x27;</span>;</span><br><span class="line">		<span class="keyword">return</span> unserialize(<span class="variable">$test1_str</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="variable">$test2</span> = <span class="keyword">new</span> Test2();</span><br><span class="line"><span class="variable">$obj</span> = <span class="variable">$test2</span>-&gt;test2_unserialize();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;============&quot;</span>;</span><br><span class="line"><span class="comment">//输出test1对象，会自动调用__toString方法</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$obj</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/buuctf/DBabySQL2.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL2.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
-<p>界面很简洁，老样子，试试二次注入，发现然并卵。但是发现了这道题是POST传参。</p>
-<p>打开burp suite抓了包并对其进行了篡改，但并没有什么用。</p>
-<img src="/buuctf/DBabySQL3.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL3.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL3" style="zoom:60%;" />
+<p>我来解说下，同时也是传达思想。<code>test1对象</code>内部使用了<code>_toString()</code>魔法函数，并且在<code>_toString()</code>函数内部使用了<code>file_get_contents</code>函数读取了属性<code>$file_name</code>指向文件，但<code>_toString</code>函数只有在<code>test1对象</code>当做字符串使用的情况下才会被调用。<code>Test2对象</code>中调用了<code>test2_unserialize</code>函数对<code>test对象</code>进行<strong>反序列化</strong>，并将<code>test1对象</code>输出，那么此时就会调用<code>test1对象</code>里的<code>_toString</code>函数读取文件。</p>
+<p>test.txt文件里的内容就会被输出。假设$test1_str变量里的内容如果是可控的话，那么就可以将test.txt内容进行替换，进行任意文件读取。这时，就有一个反序列化pop利用链。</p>
+<p><strong>2.反序列化pop利用链</strong></p>
+<p><strong>pop漏洞利用链代码审计：</strong>pop(面向对象编程)链的构造是寻找程序当中环境已经定义了或者能够动态加载的对象属性(函数方法)，将一些可能的调用组合在一起形成一个完整的，具有目的性的操作。</p>
+<p>反序列化漏洞的挖掘可以从以下方面进行：</p>
+<blockquote>
+<ol>
+<li><p>进行反序列化的数据点可控</p>
+</li>
+<li><p>反序列化类中有魔法方法，并且魔法方法中有敏感操作</p>
+</li>
+<li><p>魔法方法中没有敏感操作，但是其对象调用了其它类中同名函数，可以通过构造pop链利用</p>
+</li>
+</ol>
+</blockquote>
+<p><strong>unserialize函数（变量可控）–&gt;__wakeup()魔术方法–&gt;__tostring()魔术方法–&gt;__get魔术方法–&gt;__invoke魔术方法–&gt;触发Read类中的file_get方法–&gt;触发file_get_contents函数读取flag.php</strong></p>
+<pre><code>反序列化的常见起点
+    __wakeup 一定会调用
+    __destruct 一定会调用
+    __toString 当一个对象被反序列化后又被当做字符串使用
 
-<p>然后看了下他的返回值发现有一行不知道什么的注释，然后百度了下发现是base32编码</p>
-<img src="/buuctf/DBabySQL4.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL4.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL4" style="zoom:60%;" />
+反序列化的常见中间跳板:
+    __toString 当一个对象被当做字符串使用
+    __get 读取不可访问或不存在属性时被调用
+    __set 当给不可访问或不存在属性赋值时被调用
+    __isset 对不可访问或不存在的属性调用isset()或empty()时被调用。形如 $this-&gt;$func();
 
-<p>然后用base32解码后发现还要base64解码。</p>
-<p>出来是<code>select * from user where username = &#39;$name&#39;</code></p>
-<p>这就可以看出这道题是对数据库进行查询的。</p>
-<p>然后用刚刚了解到的fuzz测试测了下。啊~我这个fuzz字典感觉不是很好吧。</p>
-<p><img src="/buuctf/DBabySQL5.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL5.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL5"></p>
-<p>虽然不是很好，但还是看得出对哪些字符有过滤的，得知对联合查询并没有过滤但是对order、or、=等字符进行了过滤。</p>
-<p>这里只能用unions elect代替order by了。</p>
-<p>输入1’ unions elect 1,2,3,4# 返回错误 再试试 1’ union select 1,2,3#返回正确。</p>
-<p>可以得知有3列字段。</p>
-<p>这里使用联合查询数据库，报错注入查询，都不行。感觉没辙了，再试试时间注入。</p>
-<p><img src="/buuctf/DBabySQL7.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL7.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
-<p>结果都显示这个。麻了，然后查阅了大佬的博客发现一个新的知识点。</p>
-<p><strong>联合查询并不存在的数据时，联合查询就会构造一个虚拟的数据。</strong></p>
-<p>上面的尝试中，我们应该可以发现，admin的用户是存在的。</p>
-<p>在知识点中，我是这样理解的，在联合查询一个并不存在的数据，他会构造一个虚拟的数据，我们利用这个虚拟的数据是可以登陆成功的。</p>
-<p>大佬给的数据是这样的：</p>
-<p>密码: 1234</p>
-<p>MD5：81dc9bdb52d04dc20036dbd8313ed055</p>
-<p>然后构造playload:</p>
-<p>账号：1’ union select 1,’admin’,’81dc9bdb52d04dc20036dbd8313ed055’#</p>
-<p>密码：1234</p>
-<p>注意账号这里不能使用admin 具体我不清楚，我试了是不可以的。然后就直接拿到了flag。就是sqli-labs这个例子。</p>
-<img src="/buuctf/DBabySQL8.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL8.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL8" style="zoom:60%;" />
+反序列化的常见终点:
+    __call 调用不可访问或不存在的方法时被调用
+    call_user_func 一般php代码执行都会选择这里
+    call_user_func_array 一般php代码执行都会选择这里
+</code></pre>
+<p>主要还是三点：</p>
+<pre><code>起点
+跳板
+代码执行
+</code></pre>
+<p><strong>这里可以了解到，反序列化unserialize会调用__wakeup()函数进行对象初始化，我们就要想办法绕过此函数，这里有一个点<code>当传入对象大于类的对象时可以绕过weakup函数</code>，但是这对php版本是有要求的。PHP2-php5.6.25和php7-php7.0.10这两个区间内可行。</strong></p>
+<h1 id="文件的输出与输入"><a href="#文件的输出与输入" class="headerlink" title="文件的输出与输入"></a>文件的输出与输入</h1><p>先介绍序列化serialize，对象转化为字符串。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;  <span class="comment">//可以看到有两个对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="string">&quot;guests&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="keyword">new</span> Name(<span class="string">&quot;admin&quot;</span>,<span class="number">200</span>));</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>他是可以显示的，也就说明它虽不是真实的，但它是存在的。</p>
-<p>原理就是构造一个虚拟身份来绕过审核机制。</p>
-<p><img src="/buuctf/DBabySQL6.PNG" class="lazyload" data-srcset="/buuctf/DBabySQL6.PNG" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="DBabySQL6"></p>
-<p> [参考文献]                           1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46412682/article/details/107948262">参考大佬博客</a><br>                                2.<a target="_blank" rel="noopener" href="https://yuaneuro.cn/archives/21.html">联合查询构造虚拟数据-知识详解</a></p>
+<p><img src="/buuctf/phpserialize1.png" class="lazyload" data-srcset="/buuctf/phpserialize1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<blockquote>
+<p>O:4: 这是一个object对象，长度为4<br>“Name”:2: 代表名字为Name，Name有两个属性<br>{<br>s:14:“Nameusername”; string类型，属性名长度为14，属性名是username //这里为什么是14，为什么属性名是username而不是Nameusername后面会说<br>s:5:“admin”; string类型，参数值长度5，参数值是admin<br>s:14:“Namepassword”; string类型，属性名长度为14，属性名是password<br>i: 100; int类型，参数值是100<br>}</p>
+</blockquote>
+<p>这时序列化的输出，反序列化我们只需要按照格式创建自己需要的字符串就ok。</p>
+<p>再扩充下php序列化基础格式</p>
+<p>boolean</p>
+<blockquote>
+<p>b:;</p>
+<p>b:1; //True</p>
+<p>b:0; //False</p>
+</blockquote>
+<p>integer</p>
+<blockquote>
+<p>i:;</p>
+<p>i:1; // 1</p>
+<p>i:-3; // -3</p>
+</blockquote>
+<p>double</p>
+<blockquote>
+<p>d:;</p>
+<p>d:1.2345600000000001; // 1.23456（php弱类型所造成的四舍五入现象）</p>
+</blockquote>
+<p>NULL</p>
+<blockquote>
+<p>N; //NULL</p>
+</blockquote>
+<p>string</p>
+<blockquote>
+<p>s::””; //前面已经有介绍</p>
+</blockquote>
+<p>array</p>
+<blockquote>
+<p>a::{key,value pairs};</p>
+<p>a{s”key1”;s”value1”;s”value2”;}  // array(“key1” =&gt; “value1”, “key2” =&gt; “value2”)</p>
+</blockquote>
+<h1 id="关于对象"><a href="#关于对象" class="headerlink" title="关于对象"></a>关于对象</h1><p>说起对象，emm，看代码，先要了解<strong>public</strong>、<strong>private</strong>、<strong>protected</strong>这三种。</p>
+<p>其中public正常使用就行，不用添加也不用减少</p>
+<p><strong>protected</strong> 声明的字段为保护字段，在所声明的类和该类的子类中可见，但在该类的对象实例中不可见。因此保护字段的字段名在序列化时，字段名前面会加上<code>\0*\0</code>的前缀。<code>这里的 \0 表示 ASCII 码为 0 的字符(不可见字符)，而不是 \0 组合。</code>这也许解释了，为什么如果直接在网址上，传递\0*\0username会报错，因为实际上并不是\0，只是用它来代替ASCII值为0的字符。必须用python传值才可以。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="string">&quot;guests&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="keyword">new</span> Name(<span class="string">&quot;admin&quot;</span>,<span class="number">100</span>));</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">O:<span class="number">4</span>:<span class="string">&quot;Name&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">11</span>:<span class="string">&quot;\0*\0username&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;admin&quot;</span>;s:<span class="number">11</span>:<span class="string">&quot;\0*\0password&quot;</span>;i:<span class="number">100</span>;&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>private</strong> 声明的字段为私有字段，只在所声明的类中可见，在该类的子类和该类的对象实例中均不可见。因此私有字段的字段名在序列化时，<strong>类名和字段名前面都会加上\0的前缀</strong>。字符串长度也包括所加前缀的长度。其中 \0 字符也是计算长度的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">$this</span>-&gt;username = <span class="string">&quot;guests&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="keyword">new</span> Name(<span class="string">&quot;admin&quot;</span>,<span class="number">100</span>));</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">O:<span class="number">4</span>:<span class="string">&quot;Name&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">14</span>:<span class="string">&quot;\0Name\0username&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;admin&quot;</span>;s:<span class="number">14</span>:<span class="string">&quot;\0Name\0password&quot;</span>;i:<span class="number">100</span>;&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>\0</code>也可以写为%00，这是空的意思，因为输出的时候不会输出空。</p>
+<p><font color='red'><strong>注意</strong></font>：这里的双引号有必要时需要url编码，论环境而定。</p>
 
 
   
@@ -2750,7 +2865,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/>https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/</a></p>
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/>https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</a></p>
               
             
           </blockquote>
@@ -2777,10 +2892,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-25T15:55:07+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-13T21:59:05+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月25日</p>
+    <p>更新于：2021年9月13日</p>
   </a>
 </div>
 
@@ -2799,7 +2914,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/&title=php反序列化漏洞 - hacker-newbie blog&summary="
           
           >
           
@@ -2811,7 +2926,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/&title=php反序列化漏洞 - hacker-newbie blog&summary="
           
           >
           
@@ -2823,7 +2938,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/&title=【GXYCTF2019】BabySQli - hacker-newbie blog&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/&title=php反序列化漏洞 - hacker-newbie blog&summary="
           
           >
           
@@ -2856,30 +2971,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/07/18/%5B%E5%BC%BA%E7%BD%91%E6%9D%AF2019%5D%E9%9A%8F%E4%BE%BF%E6%B3%A8/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>buuctf:【强网杯 2019】随便注</p>
-          <p class='content'>
-好熟悉呀，貌似又是一个堆叠注入。
-打脸了，不是的，就是正常的注入。
-然后就展示吧。~~~
-判断闭合，判断过滤。
-结果为单引号闭合，order by 2# 返回正常。
-联合查询时
-这里过滤了se...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/07/11/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DEasySQL/'>
-          <p class='title'>【极客大挑战 2019】 *EasySQL*<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>buuctf: 【极客大挑战 2019】 EasySQL上图~~~
-
-
-
-
-靶机是这样的一个登陆界面，先试试万能用户名和密码，会出现错误，之后在，密码框进行注入。
-
-
-这里进行了报错，但不知道什...</p>
+        <a class='next' href='/2021/08/22/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/'>
+          <p class='title'>命令执行<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>web 29
+1234567891011121314151617181920&lt;?php/*# -*- coding: utf-8 -*-# @Author: h1xa# @Date:   ...</p>
         </a>
       
     </div>
@@ -2926,6 +3022,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        
+    </div>
+  </section>
+
 
   
 
@@ -2943,7 +3053,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="【GXYCTF2019】BabySQli";
+  pdata.postTitle="php反序列化漏洞";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   //  see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs
@@ -3790,7 +3900,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
-    volantis.js('/js/rightMenu.js?time=1631283058957')
+    volantis.js('/js/rightMenu.js?time=1631541606095')
   </script>
 
 
@@ -3904,19 +4014,19 @@ volantis.pjax.push(bindToggleButton);
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1631283058957")
+        volantis.js("/js/plugins/sites.js?time=1631541606095")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1631283058957")
+        volantis.js("/js/plugins/friends.js?time=1631541606095")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1631283058957")
+        volantis.js("/js/plugins/contributors.js?time=1631541606095")
       }
     
   };
@@ -3989,7 +4099,7 @@ volantis.pjax.push(bindToggleButton);
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1631283058960')
+      await volantis.js('/js/aplayer.js?time=1631541606098')
       volantis.APlayerController.music = true;
     
   })();
@@ -4084,7 +4194,7 @@ volantis.pjax.push(bindToggleButton);
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1631283058957').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1631541606095').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -4093,7 +4203,7 @@ volantis.pjax.push(bindToggleButton);
 
 
 
-<script src="/js/app.js?time=1631283058958.js"></script>
+<script src="/js/app.js?time=1631541606095.js"></script>
 
 
 <!-- optional -->
@@ -4106,7 +4216,7 @@ volantis.pjax.push(bindToggleButton);
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1631283058957");
+    return volantis.js("/js/search/hexo.js?time=1631541606095");
   }
 
   function loadSearchService() {
@@ -4374,8 +4484,8 @@ volantis.pjax.push(bindToggleButton);
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058957')
-      volantis.js('/js/message.js?time=1631283058957', () => {
+      volantis.css('/css/message.css?time=1631541606095')
+      volantis.js('/js/message.js?time=1631541606095', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -4419,8 +4529,8 @@ volantis.pjax.push(bindToggleButton);
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1631283058957')
-      volantis.js('/js/message.js?time=1631283058957', () => {
+      volantis.css('/css/message.css?time=1631541606095')
+      volantis.js('/js/message.js?time=1631541606095', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
@@ -4581,7 +4691,7 @@ volantis.pjax.push(bindToggleButton);
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/","name":"ctf"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/ctf/buuctf-web/","name":"buuctf-web"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/","name":"【GXYCTF2019】BabySQli"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"【GXYCTF2019】BabySQli","description":"","datePublished":"2021-07-10T16:00:00.000Z","dateModified":"2021-08-25T07:55:07.267Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/07/11/[GXYCTF2019]babySQLi/","wordCount":0,"articleSection":"ctf"}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/09/13/php反序列化漏洞/","name":"php反序列化漏洞"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"php反序列化漏洞","description":"","datePublished":"2021-09-13T13:42:30.715Z","dateModified":"2021-09-13T13:59:05.811Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/09/13/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/","wordCount":0}]</script>
 
 
 <!-- more -->
