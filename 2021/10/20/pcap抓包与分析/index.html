@@ -4,8 +4,8 @@
   <meta name="generator" content="Hexo 5.4.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://hacker-hkl.github.io/archives/2021/03/"/>
+  
+  <link rel="canonical" href="https://hacker-hkl.github.io/2021/10/20/pcap抓包与分析/"/>
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -20,16 +20,20 @@
   <meta content="hacker-newbie blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1634707077247" as="style">
+  <link rel="preload" href="/css/style.css?time=1634707077017" as="style">
   <!-- 页面元数据 -->
-  <title>归档：2021/3 - hacker-newbie blog</title>
+  <title>论pcap包的抓取于分析 - hacker-newbie blog</title>
   <meta name="keywords" content="null">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hacker-newbie blog">
-<meta property="og:url" content="https://hacker-hkl.github.io/archives/2021/03/index.html">
+  <meta name="description" content="先讨论pcap包的抓取 这里我们可以使用Wireshark+Winpcap组合进行抓取pcap包，但这里要注意的是这个组合不可以抓取回环包，如果要抓回环包可以使用Wireshark+Npcap这个组合。 Winpcap与Npcap在网上都是可以找到集成应用的，可以一键配置。 这里我在windows环境下使用python+pypcap+dpkt进行抓取分析。 首先要安装pypcap包，我是用pip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论pcap包的抓取于分析">
+<meta property="og:url" content="https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="hacker-newbie blog">
+<meta property="og:description" content="先讨论pcap包的抓取 这里我们可以使用Wireshark+Winpcap组合进行抓取pcap包，但这里要注意的是这个组合不可以抓取回环包，如果要抓回环包可以使用Wireshark+Npcap这个组合。 Winpcap与Npcap在网上都是可以找到集成应用的，可以一键配置。 这里我在windows环境下使用python+pypcap+dpkt进行抓取分析。 首先要安装pypcap包，我是用pip">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2021-10-20T05:13:57.876Z">
+<meta property="article:modified_time" content="2021-10-20T05:16:43.332Z">
 <meta property="article:author" content="hacker-newbie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
@@ -2197,8 +2201,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1634707077247" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1634707077247"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1634707077017" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1634707077017"></noscript>
     <script>
       var userColorScheme=localStorage.getItem("user-color-scheme")
       if(userColorScheme){
@@ -2262,7 +2266,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <!-- Custom Files head end-->
 </head>
   <body>
-    <header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+    <header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2540,7 +2544,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper  dock' style="display: ;">
+      <div id="none" class='cover-wrapper post dock' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=1200"></div>
 
@@ -2617,73 +2621,270 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 <div id="l_main" class=''>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
-      
+    
+    
+      <h1 class="title">
+        论pcap包的抓取于分析
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/images/hacker.jpg">
+    <p>hacker-newbie</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+    </a>
+  </div>
+
+
+          
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/">
-        爬虫urllib的使用与补充
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年10月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        关于urllib的使用与补充，在爬取的过程中要尽量做到浏览器的模拟仿真。如果在爬取的过程中不进行仿真处理，目标浏览器会识别出你是爬虫，从而把你拒之门外。
-类的使用123import urllib.requesturllib.request.urlopen(文本网址,*data,*timeout) #data为传参的文本，timeout为访问一次的时间节点print(response.stat...
-      
+      <div id="lc-pv" data-title="论pcap包的抓取于分析" data-path="/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
+      </div>
     
   </div>
+
+
+  <div id="page-plugins-helper"></div>
+  <p>先讨论pcap包的抓取</p>
+<p>这里我们可以使用<code>Wireshark</code>+<code>Winpcap</code>组合进行抓取pcap包，但这里要注意的是这个组合不可以抓取回环包，如果要抓回环包可以使用<code>Wireshark</code>+<code>Npcap</code>这个组合。</p>
+<p><code>Winpcap</code>与<code>Npcap</code>在网上都是可以找到集成应用的，可以一键配置。</p>
+<p>这里我在<code>windows</code>环境下使用<code>python</code>+<code>pypcap</code>+<code>dpkt</code>进行抓取分析。</p>
+<p>首先要安装pypcap包，我是用<code>pip install pypcap</code>命令下载失败，[这里是下载pypcap的链接](<a target="_blank" rel="noopener" href="https://pypi.org/project/pypcap/#files">pypcap · PyPI</a>)</p>
+<p><a href="https://link.juejin.im/?target=https://github.com/pynetwork/pypcap">pypcap</a>是一个对<code>libpcap</code>C库进行封装和简化的面向对象的抓包工具库，可以非常方便的用于抓包和过滤，结合<code>dpkt</code>解析库可以完成许多网络数据包的抓取和分析。也就是说pypcap是用c语言写成的。一开始，lipcap API库被设计成使用C和C++语言运行。但随着更多不用高级编程语言的出现，比如Perl、Python、Java、C#和Ruby等，lipcap被允许可以被封装成不同语言的库被调用。Libpcap可以在大部分的Unix操作系统下运行，同时也支持windows系统，也就是winpcap库。</p>
+<p>这里我们需要<code>Npcap</code>的支持，先将[Npcap](<a target="_blank" rel="noopener" href="https://nmap.org/npcap/">Npcap： Windows 数据包捕获库和驱动程序 (nmap.org)</a>)下载安装，再下载Npcap SDK然后再将下载的pypcap解压到Npcap SDK的目录。并将Npcap SDK的文件名改为wpdpack放在python文件的include文件夹下。然后在文件夹里打开powershell。运行<code>python setup.py install</code>这里遇到了一些问题<code>error: Microsoft Visual C++ 14.0 or greater is required. Get it with &quot;Microsoft C++ Build Tools&quot;</code>。要配置VSC++环境。待配置好之后在powershell窗口<code>python setup.py build    &amp;    python setup.py install</code>成功即可。</p>
+<p>可以先调试下是否安装成功。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pcap</span><br><span class="line"><span class="comment"># list all of the Internet devices</span></span><br><span class="line">devs = pcap.findalldevs()</span><br><span class="line"><span class="built_in">print</span>(*devs, sep=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">pc = pcap.pcap(devs[<span class="number">3</span>], promisc=<span class="literal">True</span>, immediate=<span class="literal">True</span>, timeout_ms=<span class="number">50</span>)</span><br><span class="line"><span class="comment"># fiter http pcakets</span></span><br><span class="line">pc.setfilter(<span class="string">&#x27;tcp port 80&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> ptime, pdata <span class="keyword">in</span> pc:</span><br><span class="line">    <span class="built_in">print</span>(ptime, pdata)</span><br></pre></td></tr></table></figure>
+
+<p>成功之后就可以使用了。</p>
+<p>dpkt的安装<code>pip install dpkt</code>用来解析获取的pcap包。</p>
+<p>之后就是使用pypacp抓包了。先了解其中的主要函数。</p>
+<p>先是findalldevs，它可以列出当前操作系统的所有网络接口<code>pcap.findalldevs()</code>但是这个方法在windows下并不好操作，这里可以借用wireshark抓包获得接口。</p>
+<p>再是pcap.pcap，<code>pc = pcap.pcap(devs[3], promisc=True, immediate=True, timeout_ms=50)</code>以上代码定义了一个pcap对象，首个参数<code>devs[3]</code>对应接口名，<code>promisc</code>为真代表打开混杂模式，<code>immediate</code>代表立即模式，启用将不缓存数据包,<code>timeout_ms</code>代表接收数据包的超时时间</p>
+<p>之后是setfilter函数，是用来设置数据包过滤器，比如只想抓http的包，那就通过<code>setfilter(tcp port 80)</code>实现。</p>
+<p>再就是最后的抓包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ptime,pdata <span class="keyword">in</span> pc:</span><br><span class="line">    <span class="built_in">print</span>(ptime,pdata)</span><br></pre></td></tr></table></figure>
+
+<p>上边的pcap.pcap对象pc是一个动态数据包，通过循环结构不断输出。</p>
+<p>下边是一个简易的抓包工具</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- encoding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pcap</span><br><span class="line"><span class="keyword">import</span> dpkt</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> getopt</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="string">&#x27;Windows&#x27;</span> <span class="keyword">in</span> platform.platform():</span><br><span class="line">    <span class="keyword">import</span> winreg <span class="keyword">as</span> wr</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">IF_REG = <span class="string">r&#x27;SYSTEM\CurrentControlSet\Control\Network\&#123;4d36e972-e325-11ce-bfc1-08002be10318&#125;&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInterfaceByName</span>(<span class="params">name</span>):</span> //根据接口名称,通过查找注册表信息获取pcap所需的接口设备信息,适用于Windows系统.</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;Get guid of interface from regedit of windows system</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        name: interface name</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        An valid guid value or None.</span></span><br><span class="line"><span class="string">    Example:</span></span><br><span class="line"><span class="string">        getInterfaceByName(&#x27;eth0&#x27;)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    reg = wr.ConnectRegistry(<span class="literal">None</span>, wr.HKEY_LOCAL_MACHINE)</span><br><span class="line">    reg_key = wr.OpenKey(reg, IF_REG)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(wr.QueryInfoKey(reg_key)[<span class="number">0</span>]):</span><br><span class="line">        subkey_name = wr.EnumKey(reg_key, i)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            reg_subkey = wr.OpenKey(reg_key, subkey_name + <span class="string">r&#x27;\Connection&#x27;</span>)</span><br><span class="line">            Name = wr.QueryValueEx(reg_subkey, <span class="string">&#x27;Name&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">            wr.CloseKey(reg_subkey)</span><br><span class="line">            <span class="keyword">if</span> Name == name:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">r&#x27;\Device\NPF_&#x27;</span> + subkey_name</span><br><span class="line">        <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mac_addr</span>(<span class="params">mac</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;%02x:%02x:%02x:%02x:%02x:%02x&#x27;</span>%<span class="built_in">tuple</span>(mac)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ip_addr</span>(<span class="params">ip</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;%d.%d.%d.%d&#x27;</span>%<span class="built_in">tuple</span>(ip)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">captureData</span>(<span class="params">iface</span>):</span></span><br><span class="line">    pkt = pcap.pcap(iface, promisc=<span class="literal">True</span>, immediate=<span class="literal">True</span>, timeout_ms=<span class="number">50</span>)</span><br><span class="line">    <span class="comment"># filter method</span></span><br><span class="line">    filters = &#123;</span><br><span class="line">        <span class="string">&#x27;DNS&#x27;</span>: <span class="string">&#x27;udp port 53&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;HTTP&#x27;</span>: <span class="string">&#x27;tcp port 80&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># pkt.setfilter(filters[&#x27;HTTP&#x27;])</span></span><br><span class="line"> </span><br><span class="line">    pcap_filepath = <span class="string">&#x27;pkts/pkts_&#123;&#125;.pcap&#x27;</span>.<span class="built_in">format</span>(time.strftime(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>,</span><br><span class="line">        time.localtime()))</span><br><span class="line">    pcap_file = <span class="built_in">open</span>(pcap_filepath, <span class="string">&#x27;wb&#x27;</span>) //数据包的存储</span><br><span class="line">    writer = dpkt.pcap.Writer(pcap_file)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Start capture...&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pkts_count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> ptime, pdata <span class="keyword">in</span> pkt:</span><br><span class="line">            writer.writepkt(pdata, ptime)</span><br><span class="line">            <span class="comment"># anlysisData(pdata)</span></span><br><span class="line">            printRawPkt(ptime, pdata)</span><br><span class="line">            pkts_count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">except</span> KeyboardInterrupt <span class="keyword">as</span> e:</span><br><span class="line">        writer.close()</span><br><span class="line">        pcap_file.close()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pkts_count:</span><br><span class="line">            os.remove(pcap_filepath)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%d packets received&#x27;</span>%(pkts_count))</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printRawPkt</span>(<span class="params">time, data</span>):</span> //打印数据包的基本信息</span><br><span class="line">    eth = dpkt.ethernet.Ethernet(data) //数据包的解析</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Timestamp: &#x27;</span>, <span class="built_in">str</span>(datetime.datetime.utcfromtimestamp(time)))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Ethernet Frame: &#x27;</span>, mac_addr(eth.src), mac_addr(eth.dst))</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(eth.data, dpkt.ip.IP):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"> </span><br><span class="line">    ip = eth.data</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># get fragments info</span></span><br><span class="line">    do_not_fragment = <span class="built_in">bool</span>(ip.off &amp; dpkt.ip.IP_DF)</span><br><span class="line">    more_fragments = <span class="built_in">bool</span>(ip.off &amp; dpkt.ip.IP_MF)</span><br><span class="line">    fragment_offset = ip.off &amp; dpkt.ip.IP_OFFMASK</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;IP: %s -&gt; %s (len=%d ttl=%d DF=%d MF=%d offset=%d)\n&#x27;</span> % (</span><br><span class="line">        ip_addr(ip.src), ip_addr(ip.dst), ip.<span class="built_in">len</span>, ip.ttl,</span><br><span class="line">        do_not_fragment, more_fragments, fragment_offset))</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">anlysisData</span>(<span class="params">data</span>):</span></span><br><span class="line">    packet = dpkt.ethernet.Ethernet(data)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(packet.data, dpkt.ip.IP):</span><br><span class="line">        ip = ip_addr(packet.data.dst)</span><br><span class="line">        <span class="keyword">if</span> packet.data.data.dport == <span class="number">80</span> <span class="keyword">or</span> packet.data.data.sport == <span class="number">80</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="built_in">print</span>(packet.data.data.data.decode(<span class="string">&#x27;utf-8&#x27;</span>, errors=<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">            <span class="keyword">except</span> UnicodeDecodeError <span class="keyword">as</span> uderr:</span><br><span class="line">                <span class="built_in">print</span>(uderr.__str__())</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;Windows&#x27;</span> <span class="keyword">in</span> platform.platform():</span><br><span class="line">        iface = getInterfaceByName(<span class="string">&#x27;Router&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        iface = <span class="string">&#x27;enp2s0&#x27;</span></span><br><span class="line">    captureData(iface)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>再就是简单介绍<code>wireshark</code></p>
+<p><img src="/ctf/pcap1.png" class="lazyload" data-srcset="/ctf/pcap1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="pcap1"></p>
+<p>数据包的颜色代表了其性质。可以看出它传输过程中不同网络等次的信息，显化TCP三次握手记录。这里区分TCP和UDP，TCP的三次握手四次挥手确保了数据的完整性，不容易丢包，但是相对速度慢。UDP可以说是流式传输，丢包率高速度快，应用于视频电话之类的时间同步较高的传输。</p>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/python/">python</a>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/03/06/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BA%8E%E8%A1%A5%E5%85%85/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/>https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='/images/zhifubao.png'>
+            
+              <img src='/images/wechat.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-20T13:16:43+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年10月20日</p>
+  </a>
 </div>
 
-          </div>
         
       
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-  </section>
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/&title=论pcap包的抓取于分析 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/&title=论pcap包的抓取于分析 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/&title=论pcap包的抓取于分析 - hacker-newbie blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/09/25/%E3%80%90%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%E3%80%91BuyFlag/'>
+          <p class='title'>Geek challenges 2019 BuyFlag<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>相比GET传参报文，POST传参报文多的几个项：    1.GET转为POST    2.Content-Type:Content-Type: application/x-www-form-ur...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+  
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
     
+
+    
+      <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+    
+
+    
+      <!-- Custom Files comment begin-->
+      
+      <!-- Custom Files comment end-->
+    
+  </article>
   
 
 
-	
+
+
+
+
 </div>
 <aside id='l_side'>
   
@@ -2691,140 +2892,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' href='/about/'>
-          <img no-lazy src='/images/hacker.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">hacker-newbie blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/ctf/" href="/categories/ctf/"
-            id="categoriesctf"
-            ><div class='name'>ctf</div><div class='badge'>(25)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/bugku-web/" href="/categories/ctf/bugku-web/"
-            id="categoriesctfbugku-web"
-            ><div class='name'>bugku-web</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/buuctf-web/" href="/categories/ctf/buuctf-web/"
-            id="categoriesctfbuuctf-web"
-            ><div class='name'>buuctf-web</div><div class='badge'>(20)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/ctfhub-web/" href="/categories/ctf/ctfhub-web/"
-            id="categoriesctfctfhub-web"
-            ><div class='name'>ctfhub-web</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/ctf/ctfshow-web/" href="/categories/ctf/ctfshow-web/"
-            id="categoriesctfctfshow-web"
-            ><div class='name'>ctfshow-web</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/python/" href="/categories/python/"
-            id="categoriespython"
-            ><div class='name'>python</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/"
-            id="categoriesE8AEA1E7AE97E69CBAE7BD91E7BB9CE58E9FE79086"
-            ><div class='name'>计算机网络原理</div><div class='badge'>(2)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-  
 
   
 
@@ -2835,13 +2904,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="论pcap包的抓取于分析";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   //  see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs
@@ -2849,14 +2919,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     // header
     var l_header=document.getElementById("l_header");
     
-    l_header.classList.remove("show");
+    l_header.classList.add("show");
     
     
       // cover
       var cover_wrapper=document.querySelector('#l_cover .cover-wrapper');
       var scroll_down=document.getElementById('scroll-down');
-      cover_wrapper.id="half";
-      cover_wrapper.style.display="";
+      cover_wrapper.id="none";
+      cover_wrapper.style.display="none";
       scroll_down.style.display="none";
     
   
@@ -3688,7 +3758,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
     
-    volantis.js('/js/rightMenu.js?time=1634707077247')
+    volantis.js('/js/rightMenu.js?time=1634707077017')
   </script>
 
 
@@ -3802,19 +3872,19 @@ volantis.pjax.push(bindToggleButton);
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1634707077247")
+        volantis.js("/js/plugins/sites.js?time=1634707077017")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1634707077247")
+        volantis.js("/js/plugins/friends.js?time=1634707077017")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1634707077247")
+        volantis.js("/js/plugins/contributors.js?time=1634707077017")
       }
     
   };
@@ -3887,7 +3957,7 @@ volantis.pjax.push(bindToggleButton);
 
     
       // 右键 music 需要在 APlayer  MetingJS 之后加载
-      await volantis.js('/js/aplayer.js?time=1634707077250')
+      await volantis.js('/js/aplayer.js?time=1634707077022')
       volantis.APlayerController.music = true;
     
   })();
@@ -3982,7 +4052,7 @@ volantis.pjax.push(bindToggleButton);
       emojiMaps: emojiMaps,
     }))
   }
-  volantis.js('/js/valine.js?time=1634707077247').then(pjax_valine)
+  volantis.js('/js/valine.js?time=1634707077017').then(pjax_valine)
   volantis.pjax.push(pjax_valine);
 </script>
 
@@ -3991,7 +4061,7 @@ volantis.pjax.push(bindToggleButton);
 
 
 
-<script src="/js/app.js?time=1634707077247.js"></script>
+<script src="/js/app.js?time=1634707077017.js"></script>
 
 
 <!-- optional -->
@@ -4004,7 +4074,7 @@ volantis.pjax.push(bindToggleButton);
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("/js/search/hexo.js?time=1634707077247");
+    return volantis.js("/js/search/hexo.js?time=1634707077017");
   }
 
   function loadSearchService() {
@@ -4272,8 +4342,8 @@ volantis.pjax.push(bindToggleButton);
   <script>
   volantis.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1634707077247')
-      volantis.js('/js/message.js?time=1634707077247', () => {
+      volantis.css('/css/message.css?time=1634707077017')
+      volantis.js('/js/message.js?time=1634707077017', () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -4317,8 +4387,8 @@ volantis.pjax.push(bindToggleButton);
 
   volantis.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1634707077247')
-      volantis.js('/js/message.js?time=1634707077247', () => {
+      volantis.css('/css/message.css?time=1634707077017')
+      volantis.js('/js/message.js?time=1634707077017', () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
@@ -4479,7 +4549,7 @@ volantis.pjax.push(bindToggleButton);
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/archives/","name":"Archive"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/archives/2021/","name":"2021年"}},{"@type":"ListItem","position":4,"item":{"@id":"https://hacker-hkl.github.io/archives/2021/3/","name":"3月"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","keywords":null,"description":"","author":{"@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"}},"publisher":{"@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hacker-hkl.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"hacker-newbie blog","url":"https://hacker-hkl.github.io/","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"sameAs":["https://github.com/volantis-x"]},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hacker-hkl.github.io/","name":"hacker-newbie blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hacker-hkl.github.io/categories/其他/","name":"其他"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hacker-hkl.github.io/2021/10/20/pcap抓包与分析/","name":"论pcap包的抓取于分析"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"论pcap包的抓取于分析","description":"","datePublished":"2021-10-20T05:13:57.876Z","dateModified":"2021-10-20T05:16:43.332Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/"},"author":{"@type":"Person"},"publisher":{"@type":"Organization","name":"hacker-newbie blog","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hacker-hkl.github.io/2021/10/20/pcap%E6%8A%93%E5%8C%85%E4%B8%8E%E5%88%86%E6%9E%90/","wordCount":0,"articleSection":"其他"}]</script>
 
 
 <!-- more -->
